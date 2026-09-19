@@ -244,3 +244,31 @@ footer img { opacity: .9; margin-bottom: 8px; }
 @media (max-width: 1100px) {
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+
+/* Menu-style ambient music control */
+.music-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 40;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(8, 14, 26, .78);
+  color: #e8eef8;
+  font: 600 0.85rem/1 "Outfit", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  transition: border-color .2s ease, transform .15s ease, background .2s ease;
+}
+.music-toggle:hover {
+  border-color: rgba(125, 211, 255, .45);
+  transform: translateY(-1px);
+}
+.music-toggle[aria-pressed="true"] {
+  background: rgba(20, 40, 60, .85);
+  border-color: rgba(125, 211, 255, .35);
+}
