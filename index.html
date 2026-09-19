@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manafall — Free Download</title>
+  <meta name="description" content="Download Manafall by Jean-Luc Alexander. Build your own home, craft, cast magic, and explore a living multiplayer world. Free Windows build. Optional support via Ko-fi." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="assets/symbol.png" alt="" width="40" height="40" />
+        <span>MANAFALL</span>
+      </a>
+      <nav class="links">
+        <a href="#trailer">Trailer</a>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Free to play · Windows</p>
+        <h1>Manafall</h1>
+        <p class="lede">Combat, crafting, magic, and exploration in a living multiplayer world — including building your own home to shape and return to. Download free. Support optional — always through trusted Ko-fi.</p>
+        <p class="by">Created by <strong>Jean-Luc Alexander</strong></p>
+        <div class="hero-cta">
+          <a class="btn primary" id="downloadBtnTop" href="#download">
+            <span>Download for Windows</span>
+            <small>Large build · direct link</small>
+          </a>
+          <a class="btn ghost" href="#trailer">
+            <span>Watch trailer</span>
+            <small>YouTube Short</small>
+          </a>
+          <a class="btn ghost" id="kofiBtnTop" href="#support">
+            <span>Support on Ko-fi</span>
+            <small>Tips via PayPal / card</small>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art reveal delay">
+        <div class="frame" id="heroFrame">
+          <img src="assets/splash.png" alt="Manafall splash art" />
+          <div class="frame-shine"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="trailer" class="trailer reveal">
+      <h2>Trailer</h2>
+      <p class="trailer-copy">A quick look at Manafall — combat, magic, and the world you carve a home into.</p>
+      <div class="trailer-frame">
+        <iframe
+          id="trailerEmbed"
+          title="Manafall trailer"
+          src="https://www.youtube.com/embed/TudrqM7-3_A"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+      <p class="trailer-link">
+        <a id="trailerWatchLink" href="https://youtube.com/shorts/TudrqM7-3_A" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
+      </p>
+    </section>
+
+    <section id="features" class="features">
+      <h2 class="reveal">What awaits</h2>
+      <div class="feature-grid">
+        <article class="card reveal">
+          <div class="icon">⚔</div>
+          <h3>Multiplayer combat</h3>
+          <p>Fight together or alone — melee, bows, blocking, and stumble reactions with weight.</p>
+        </article>
+        <article class="card reveal delay">
+          <div class="icon">✦</div>
+          <h3>Magic &amp; alchemy</h3>
+          <p>Spells, potions, telekinesis, and craft stations woven into the world loop.</p>
+        </article>
+        <article class="card reveal delay">
+          <div class="icon">⌂</div>
+          <h3>Build your own home</h3>
+          <p>Gather materials and raise a place of your own — walls, rooms, and a shelter that marks your corner of the world.</p>
+        </article>
+        <article class="card reveal delay">
+          <div class="icon">🏔</div>
+          <h3>Living world</h3>
+          <p>Explore, gear up, and push into nights lit by northern skies.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="download" class="panel reveal">
+      <div class="panel-inner">
+        <h2>Download</h2>
+        <p class="panel-copy">Windows build. No account wall on this page — grab the game, play, tell friends.</p>
+        <a class="btn primary wide" id="downloadBtn" href="#" aria-disabled="true">
+          <span id="downloadLabel">Download for Windows</span>
+        </a>
+        <p class="note" id="downloadNote">Download link appears here once the build is uploaded to secure hosting.</p>
+        <ul class="checklist">
+          <li>Direct file from the creator</li>
+          <li>No bundled adware</li>
+          <li>Expect a large download (multi‑GB)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="support" class="panel reveal">
+      <div class="panel-inner">
+        <h2>Support the game</h2>
+        <p class="panel-copy">Donations are optional. They go through <strong>Ko-fi</strong> — a known platform that processes PayPal and cards. You never enter payment details on this site.</p>
+        <a class="btn kofi wide" id="kofiBtn" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
+          <span>Support on Ko-fi</span>
+        </a>
+        <p class="note" id="kofiNote">Ko-fi link will appear after your page is created.</p>
+        <div class="trust-row">
+          <div><strong>Trusted checkout</strong><span>Ko-fi / PayPal</span></div>
+          <div><strong>Transparent</strong><span>Tips are voluntary</span></div>
+          <div><strong>Creator-owned</strong><span>Jean-Luc Alexander</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/symbol.png" alt="" width="28" height="28" />
+    <p>© <span id="year"></span> Jean-Luc Alexander · Manafall</p>
+    <p class="fine">Donations processed by Ko-fi. This site does not store card numbers. Not affiliated with Valve or itch.io.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="aurora.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
