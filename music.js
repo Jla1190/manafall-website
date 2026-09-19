@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   const TRACKS = [
     "assets/music/cold_fire-abstract-mysterious-ambient-248631.mp3",
     "assets/music/deuslower-fantasy-medieval-ambient-237371.mp3",
@@ -22,26 +22,27 @@
   const VOLUME = 0.22;
 
   const audio = new Audio();
-  audio.preload = "metadata";
+  audio.preload = 'metadata';
   audio.volume = VOLUME;
 
   let lastIndex = -1;
   let started = false;
-  let muted = false;
+  let muted = false;      // user mute
+  let ducked = false;     // silenced because trailer is playing
   let timer = null;
   let unlockBound = false;
 
-  const btn = document.getElementById("musicToggle");
+  const btn = document.getElementById('musicToggle');
 
   function setLabel() {
     if (!btn) return;
     if (!started) {
-      btn.textContent = "Enable music";
-      btn.setAttribute("aria-pressed", "false");
+      btn.textContent = 'Enable music';
+      btn.setAttribute('aria-pressed', 'false');
       return;
     }
-    btn.textContent = muted ? "Unmute music" : "Mute music";
-    btn.setAttribute("aria-pressed", muted ? "false" : "true");
+    btn.textContent = muted ? 'Unmute music' : 'Mute music';
+    btn.setAttribute('aria-pressed', muted ? 'false' : 'true');
   }
 
   function pickIndex() {
@@ -52,14 +53,21 @@
     return i;
   }
 
-  function gapMs() { return (GAP_MIN + Math.random() * (GAP_MAX - GAP_MIN)) * 1000; }
+  function gapMs() {
+    return (GAP_MIN + Math.random() * (GAP_MAX - GAP_MIN)) * 1000;
+  }
 
-  function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
+  function clearTimer() {
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
 
-  function scheduleNext(afterMs) { clearTimer(); timer = setTimeout(playNext, afterMs); }
+  function scheduleNext(afterMs) {
+    clearTimer();
+    timer = setTimeout(playNext, afterMs);
+  }
 
   function playNext() {
-    if (!started || muted) return;
+    if (!started || muted || ducked) return;
     const i = pickIndex();
     if (i < 0) return;
     lastIndex = i;
@@ -69,25 +77,56 @@
     if (p && p.catch) p.catch(function () { scheduleNext(gapMs()); });
   }
 
-  audio.addEventListener("ended", function () { scheduleNext(gapMs()); });
+  audio.addEventListener('ended', function () {
+    scheduleNext(gapMs());
+  });
 
   function startPlaylist() {
     if (started) return;
     started = true;
     muted = false;
     setLabel();
+    // Same as menu: silence gap before first track.
     scheduleNext(gapMs());
   }
 
-  function unlockOnce() { if (unlockBound) return; unlockBound = true; startPlaylist(); }
+  function unlockOnce() {
+    if (unlockBound) return;
+    unlockBound = true;
+    startPlaylist();
+  }
+
+  /** Pause site music while the trailer plays (does not change user mute). */
+  function duckForTrailer() {
+    if (ducked) return;
+    ducked = true;
+    clearTimer();
+    try { audio.pause(); } catch (e) {}
+  }
+
+  /** Resume site music after trailer stops/pauses, unless user muted. */
+  function unduckFromTrailer() {
+    if (!ducked) return;
+    ducked = false;
+    if (!started || muted) return;
+    // Brief beat, then continue playlist
+    scheduleNext(600);
+  }
+
+  window.ManafallMusic = {
+    duckForTrailer: duckForTrailer,
+    unduckFromTrailer: unduckFromTrailer,
+    isDucked: function () { return ducked; },
+    isStarted: function () { return started; }
+  };
 
   if (btn) {
-    btn.addEventListener("click", function (e) {
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
       if (!started) { startPlaylist(); return; }
       muted = !muted;
       if (muted) { audio.pause(); clearTimer(); }
-      else { scheduleNext(800); }
+      else if (!ducked) { scheduleNext(800); }
       setLabel();
     });
   }
@@ -98,4 +137,3 @@
 
   setLabel();
 })();
-
