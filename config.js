@@ -1,5 +1,5 @@
 window.MANAFALL_SITE = {
-  kofiUrl: "",
+  kofiUrl: "https://ko-fi.com/manafall",
   downloadUrl: "",
   downloadLabel: "Download for Windows",
   creatorName: "Jean-Luc Alexander",
