@@ -38,6 +38,18 @@
     }
   }
 
+
+  const discordBtn = document.getElementById('discordBtn');
+  const discordTop = document.getElementById('discordBtnTop');
+  const discordNav = document.getElementById('discordNav');
+  if (cfg.discordUrl) {
+    [discordBtn, discordTop, discordNav].forEach((el) => {
+      if (!el) return;
+      el.href = cfg.discordUrl;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    });
+  }
   if (cfg.kofiUrl) {
     [kofiBtn, kofiTop].forEach((btn) => {
       if (!btn) return;

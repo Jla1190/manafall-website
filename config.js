@@ -3,6 +3,6 @@ window.MANAFALL_SITE = {
   downloadUrl: "",
   downloadLabel: "Download for Windows",
   creatorName: "Jean-Luc Alexander",
-  // YouTube Shorts / watch URL or bare video id
+  discordUrl: "https://discord.gg/CH8GjWaDnx",
   trailerUrl: "https://youtube.com/shorts/TudrqM7-3_A"
 };
