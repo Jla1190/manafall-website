@@ -191,6 +191,9 @@ footer {
 }
 footer img { opacity: .9; margin-bottom: 8px; }
 .fine { font-size: .75rem; max-width: 36rem; margin: 8px auto 0; opacity: .85; }
+.fine a { color: var(--ice); text-decoration: none; }
+.fine a:hover { text-decoration: underline; }
+#itchBtn { margin-top: 12px; }
 
 .reveal {
   opacity: 0; transform: translateY(22px);

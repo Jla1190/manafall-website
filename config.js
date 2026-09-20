@@ -4,5 +4,6 @@ window.MANAFALL_SITE = {
   downloadLabel: "Download for Windows",
   creatorName: "Jean-Luc Alexander",
   discordUrl: "https://discord.gg/CH8GjWaDnx",
+  itchUrl: "https://orangejuice90.itch.io/manafall",
   trailerUrl: "https://youtube.com/shorts/TudrqM7-3_A"
 };

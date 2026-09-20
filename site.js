@@ -50,6 +50,20 @@
       el.rel = 'noopener noreferrer';
     });
   }
+  const itchBtn = document.getElementById('itchBtn');
+  const itchTop = document.getElementById('itchBtnTop');
+  const itchNav = document.getElementById('itchNav');
+  const itchFooter = document.getElementById('itchFooter');
+  const itchNote = document.getElementById('itchNote');
+  if (cfg.itchUrl) {
+    [itchBtn, itchTop, itchNav, itchFooter].forEach((el) => {
+      if (!el) return;
+      el.href = cfg.itchUrl;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    });
+    if (itchNote) itchNote.classList.add('ready');
+  }
   if (cfg.kofiUrl) {
     [kofiBtn, kofiTop].forEach((btn) => {
       if (!btn) return;
