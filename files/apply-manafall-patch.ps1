@@ -28,9 +28,19 @@ function Find-GameDir {
 }
 
 Write-Host "Manafall patch apply"
-Get-Process -Name "Manafall" -ErrorAction SilentlyContinue | ForEach-Object {
-    Write-Host ("Waiting for Manafall pid " + $_.Id + " to close...")
-    try { $_.WaitForExit(120000) } catch {}
+Write-Host "Close Manafall and leave this window open. Do not click the exe until it says Done."
+function Wait-ManafallClosed([int]$timeoutSec) {
+    $deadline = [datetime]::UtcNow.AddSeconds($timeoutSec)
+    do {
+        $left = @(Get-Process -Name "Manafall" -ErrorAction SilentlyContinue)
+        if ($left.Count -eq 0) { return $true }
+        Write-Host ("Waiting for Manafall to close (pid " + (($left | ForEach-Object { $_.Id }) -join ",") + ")")
+        Start-Sleep -Seconds 2
+    } while ([datetime]::UtcNow -lt $deadline)
+    return $false
+}
+if (-not (Wait-ManafallClosed 180)) {
+    throw "Manafall is still open. Close it, then run this script again. Do not start the game while PowerShell is copying."
 }
 Start-Sleep -Seconds 2
 
@@ -79,5 +89,5 @@ Remove-Item $zipPath -Force -ErrorAction SilentlyContinue
 $exe = Join-Path $game "Manafall.exe"
 Write-Host "Starting Manafall..."
 Start-Process -FilePath $exe
-Write-Host "Done."
-Start-Sleep -Seconds 3
+Write-Host "Done. You can close this window."
+Start-Sleep -Seconds 8
