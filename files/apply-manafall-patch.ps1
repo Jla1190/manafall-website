@@ -84,10 +84,20 @@ for ($i = 1; $i -le 20; $i++) {
     }
 }
 if (-not $copied) { throw "Could not copy files. Close Manafall and try again." }
+$markerDir = Join-Path $game "Manafall_Data\StreamingAssets"
+New-Item -ItemType Directory -Force -Path $markerDir | Out-Null
+Set-Content -LiteralPath (Join-Path $markerDir "applied-patch-version.txt") -Value $manifest.version -Encoding UTF8
 Remove-Item $staging -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item $zipPath -Force -ErrorAction SilentlyContinue
 $exe = Join-Path $game "Manafall.exe"
 Write-Host "Starting Manafall..."
 Start-Process -FilePath $exe
+Start-Sleep -Seconds 6
+$alive = @(Get-Process -Name "Manafall" -ErrorAction SilentlyContinue)
+if ($alive.Count -eq 0) {
+    Write-Host "Manafall closed right after launch. Do not keep reopening it — tell us so we can fix the patch."
+    Start-Sleep -Seconds 30
+    exit 1
+}
 Write-Host "Done. You can close this window."
 Start-Sleep -Seconds 8
