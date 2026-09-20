@@ -1,11 +1,11 @@
 {
   "game": "manafall",
   "platform": "win64",
-  "version": "0.1.7",
+  "version": "0.0.0",
   "url": "",
   "sha256": "",
-  "notes": "Automatic updates are paused. The last patch was closing the game in a loop. Open Manafall again and stay on the menu. For a clean install use the Download button on the website.",
+  "notes": "Updates are paused while we fix the patch installer. The copy you have is fine to play. Ignore any old update banner until the next real patch.",
   "page": "https://jla1190.github.io/manafall-website/#download",
   "mandatory": false,
-  "publishedAt": 1789948256
+  "publishedAt": 1789948795
 }
