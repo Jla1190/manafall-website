@@ -1,0 +1,11 @@
+{
+  "game": "manafall",
+  "platform": "win64",
+  "version": "0.1.1",
+  "url": "",
+  "sha256": "",
+  "notes": "Patch 0.1.1\n\nOnline\n- The Online menu shows how many other players are on listed and LAN hosts.\n- While you host, the corner overlay shows how many other people are in this session.\n\nPlaytest\n- Play Offline keeps your character on this machine.\n- Hosted play still ends when the host closes. There is no public shard yet.\n\nUpdates\n- Opening Online fetches these notes from the public patch list on the website, and from any LAN host listing.\n- A notes-only publish does not replace Manafall.exe. To get a new Windows program, download it again from the website, or wait until a client zip is published on the patch list.",
+  "page": "https://jla1190.github.io/manafall-website/#download",
+  "mandatory": false,
+  "publishedAt": 1789909200
+}
