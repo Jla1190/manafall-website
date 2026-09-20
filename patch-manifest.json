@@ -1,11 +1,11 @@
 {
   "game": "manafall",
   "platform": "win64",
-  "version": "0.1.1",
-  "url": "https://jla1190.github.io/manafall-website/files/manafall-0.1.1-win64.zip",
-  "sha256": "cf3c40142533e603ce62f670fe3cc0c3d7db42d74a3751c5bdb3963af22c70ad",
-  "notes": "Patch 0.1.1\n\nOnline\n- Patch notes sit below Host / Join / Back. The notes box scrolls with the mouse wheel or the scrollbar.\n\nFriends\n- Open chat and hit Friends. Add nearby players or remove people already on your list. The list is saved on this machine.\n- Friends and people in your voice/chat group get a name over their head. It shows through walls and terrain out to about 180 m (Social settings can push that farther, up to 200 m).\n\nJoin\n- A hosted game listens on IPv4 port 7777 so another PC can actually connect, not only see the name on the list.\n- If Join fails, the Online Join panel says so. The usual cause is Windows Firewall blocking TCP 7777 on the host.\n- Hosting asks Windows to allow TCP 7777, TCP 8787, and UDP 8788 on Private and Public.\n\nInternet\n- Host looks up this PC's public IPv4 and copies address:7777 to the clipboard.\n- If the router allows UPnP, Host opens 7777 (and 8787) for friends outside the house.\n- If UPnP is off, the host overlay tells you to forward TCP 7777 to this PC.\n\nLAN\n- Same house network still uses the Join list (UDP 8788). Paste the LAN address if the list is wrong.",
+  "version": "0.1.2",
+  "url": "https://jla1190.github.io/manafall-website/files/manafall-0.1.2-win64.zip",
+  "sha256": "ceec97604259a3716c5058958c7febafeaf491eaf56bf444242b821db0c54599",
+  "notes": "Patch 0.1.2\n\nUpdates\n- Apply waits until Manafall has actually closed, then copies files and starts the game again.\n\nOnline\n- Patch notes sit below Host / Join / Back. The notes box scrolls with the mouse wheel or the scrollbar.\n\nFriends\n- Open chat and hit Friends. Add nearby players or remove people already on your list. The list is saved on this machine.\n- Friends and people in your voice/chat group get a name over their head. It shows through walls and terrain out to about 180 m (Social settings can push that farther, up to 200 m).\n\nJoin\n- A hosted game listens on IPv4 port 7777 so another PC can actually connect, not only see the name on the list.\n- If Join fails, the Online Join panel says so. The usual cause is Windows Firewall blocking TCP 7777 on the host.\n- Hosting asks Windows to allow TCP 7777, TCP 8787, and UDP 8788 on Private and Public.\n\nInternet\n- Host looks up this PC's public IPv4 and copies address:7777 to the clipboard.\n- If the router allows UPnP, Host opens 7777 (and 8787) for friends outside the house.\n- If UPnP is off, the host overlay tells you to forward TCP 7777 to this PC.\n\nLAN\n- Same house network still uses the Join list (UDP 8788). Paste the LAN address if the list is wrong.",
   "page": "https://jla1190.github.io/manafall-website/#download",
   "mandatory": false,
-  "publishedAt": 1789937219
+  "publishedAt": 1789937989
 }
