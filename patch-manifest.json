@@ -4,8 +4,8 @@
   "version": "0.1.7",
   "url": "",
   "sha256": "",
-  "notes": "Patch update paused\n\nThe automatic patch was closing the game in a loop. That channel is off for now.\n\nTo play: open Manafall again. It should stay on the menu.\n\nIf it still closes by itself, download a fresh Windows build from the website Download button (Mega), then replace your old folder.",
+  "notes": "Automatic updates are paused. The last patch was closing the game in a loop. Open Manafall again and stay on the menu. For a clean install use the Download button on the website.",
   "page": "https://jla1190.github.io/manafall-website/#download",
   "mandatory": false,
-  "publishedAt": 1789948202
+  "publishedAt": 1789948256
 }
