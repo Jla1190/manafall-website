@@ -174,7 +174,7 @@ h1 {
   list-style: none; padding: 0; margin: 18px 0 0;
   color: var(--muted); text-align: left; display: grid; gap: 8px;
 }
-.checklist li::before { content: "▹ "; color: var(--ice); }
+.checklist li::before { content: "> "; color: var(--ice); }
 .trust-row {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
   margin-top: 22px;

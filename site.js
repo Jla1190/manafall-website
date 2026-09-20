@@ -33,7 +33,7 @@
     });
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
-      dlNote.textContent = 'Windows build · large download. Thanks for playing Manafall.';
+      dlNote.textContent = 'Windows build - large download. Thanks for playing Manafall.';
       dlNote.classList.add('ready');
     }
   }
@@ -59,7 +59,7 @@
       btn.removeAttribute('aria-disabled');
     });
     if (kofiNote) {
-      kofiNote.textContent = 'Opens Ko-fi in a new tab — payment handled by Ko-fi, not this page.';
+      kofiNote.textContent = 'Opens Ko-fi in a new tab - payment handled by Ko-fi, not this page.';
       kofiNote.classList.add('ready');
     }
   }
