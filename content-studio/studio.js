@@ -1,6 +1,7 @@
 (function () {
   const REDIRECT_URI = "https://jla1190.github.io/manafall-website/content-studio/callback.html";
   const SCOPES = "user.info.basic,video.publish";
+  const PROXY = "http://127.0.0.1:8787/tiktok?url=";
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -10,9 +11,31 @@
   const authDetail = document.getElementById("authDetail");
   const creatorLog = document.getElementById("creatorLog");
   const publishLog = document.getElementById("publishLog");
+  const proxyStatus = document.getElementById("proxyStatus");
+
+  function viaProxy(tiktokUrl) {
+    return PROXY + encodeURIComponent(tiktokUrl);
+  }
+
+  async function checkProxy() {
+    if (!proxyStatus) return false;
+    try {
+      const res = await fetch("http://127.0.0.1:8787/health");
+      if (res.ok) {
+        proxyStatus.textContent = "Local helper: ON";
+        proxyStatus.classList.add("ok");
+        return true;
+      }
+    } catch (e) {}
+    proxyStatus.textContent = "Local helper: OFF — start tiktok-local-proxy.ps1 first";
+    proxyStatus.classList.remove("ok");
+    return false;
+  }
 
   clientKeyInput.value = localStorage.getItem("mf_tt_client_key") || "";
   accessTokenInput.value = sessionStorage.getItem("mf_tt_access_token") || "";
+  checkProxy();
+  setInterval(checkProxy, 4000);
 
   const code = sessionStorage.getItem("mf_tt_auth_code");
   const scopes = sessionStorage.getItem("mf_tt_scopes");
@@ -60,9 +83,14 @@
       return;
     }
     creatorLog.hidden = false;
+    const proxyOk = await checkProxy();
+    if (!proxyOk) {
+      creatorLog.textContent = "Local helper is OFF.\n\nIn PowerShell run:\ncd C:\\Manafall\\_manafall-website\\content-studio\npowershell -ExecutionPolicy Bypass -File .\\tiktok-local-proxy.ps1\n\nLeave that window open, refresh this page, then try again.";
+      return;
+    }
     creatorLog.textContent = "POST /v2/post/publish/creator_info/query/ …";
     try {
-      const res = await fetch("https://open.tiktokapis.com/v2/post/publish/creator_info/query/", {
+      const res = await fetch(viaProxy("https://open.tiktokapis.com/v2/post/publish/creator_info/query/"), {
         method: "POST",
         headers: {
           Authorization: "Bearer " + token,
@@ -102,13 +130,18 @@
       publishLog.textContent = "Choose an mp4/mov file first.";
       return;
     }
+    const proxyOk = await checkProxy();
+    if (!proxyOk) {
+      publishLog.textContent = "Local helper is OFF. Start tiktok-local-proxy.ps1 first (see section 3).";
+      return;
+    }
 
     const size = file.size;
     const chunkSize = size;
     publishLog.textContent = "Init Direct Post (FILE_UPLOAD)…\nfile=" + file.name + " size=" + size;
 
     try {
-      const initRes = await fetch("https://open.tiktokapis.com/v2/post/publish/video/init/", {
+      const initRes = await fetch(viaProxy("https://open.tiktokapis.com/v2/post/publish/video/init/"), {
         method: "POST",
         headers: {
           Authorization: "Bearer " + token,
@@ -141,7 +174,7 @@
 
       publishLog.textContent += "\n\nUploading video bytes to upload_url…";
       const bytes = await file.arrayBuffer();
-      const putRes = await fetch(uploadUrl, {
+      const putRes = await fetch(viaProxy(uploadUrl), {
         method: "PUT",
         headers: {
           "Content-Type": file.type || "video/mp4",
@@ -153,7 +186,7 @@
 
       if (publishId) {
         publishLog.textContent += "\n\nFetching publish status…";
-        const statusRes = await fetch("https://open.tiktokapis.com/v2/post/publish/status/fetch/", {
+        const statusRes = await fetch(viaProxy("https://open.tiktokapis.com/v2/post/publish/status/fetch/"), {
           method: "POST",
           headers: {
             Authorization: "Bearer " + token,
