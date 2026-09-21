@@ -58,7 +58,11 @@
 
     <section class="studio-card">
       <h2>3. Access token (Sandbox)</h2>
-      <p class="hint">After Login Kit returns a <code>code</code>, exchange it for an access token in the Developer Portal Sandbox (or your secure server). Paste the Sandbox <strong>user access token</strong> here for the posting demo. Never commit the client secret.</p>
+      <p class="hint">Paste your <strong>access_token</strong> (starts with <code>act.</code>). TikTok blocks the browser from calling their API directly, so you must also run the local helper on your PC.</p>
+      <p class="hint">In PowerShell:</p>
+      <code class="block">cd C:\Manafall\_manafall-website\content-studio
+powershell -ExecutionPolicy Bypass -File .\tiktok-local-proxy.ps1</code>
+      <p id="proxyStatus" class="status">Local helper: checking…</p>
       <label class="field">
         <span>User access token</span>
         <input id="accessToken" type="password" autocomplete="off" placeholder="act...." />
