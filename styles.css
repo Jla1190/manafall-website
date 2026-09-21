@@ -318,3 +318,10 @@ footer img { opacity: .9; margin-bottom: 8px; }
   padding-left: 1.2rem;
 }
 .legal-card a { color: var(--ice); }
+.legal-h3 {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 0 .4rem;
+  color: var(--text);
+}
