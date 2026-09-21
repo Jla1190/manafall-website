@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TikTok Login Callback - Manafall</title>
+  <link rel="icon" href="../assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="studio.css" />
+</head>
+<body class="legal-page">
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="../">
+        <img src="../assets/symbol.png" alt="" width="40" height="40" />
+        <span>MANAFALL</span>
+      </a>
+      <nav class="links">
+        <a href="./">Back to Content Studio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="studio">
+    <p class="eyebrow">Login Kit</p>
+    <h1>Authorization result</h1>
+    <section class="studio-card">
+      <pre id="callbackLog" class="log"></pre>
+      <a class="btn primary" href="./">Continue to Content Studio</a>
+    </section>
+  </main>
+
+  <script src="../aurora.js"></script>
+  <script src="callback.js"></script>
+</body>
+</html>

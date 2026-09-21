@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manafall Content Studio - TikTok Demo</title>
+  <meta name="description" content="Demo of Manafall Content Studio: TikTok Login Kit and Content Posting API for @manafalltiktoc." />
+  <link rel="icon" href="../assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="studio.css" />
+</head>
+<body class="legal-page">
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="../">
+        <img src="../assets/symbol.png" alt="" width="40" height="40" />
+        <span>MANAFALL</span>
+      </a>
+      <nav class="links">
+        <a href="../">Home</a>
+        <a href="../terms.html">Terms</a>
+        <a href="./">Content Studio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="studio">
+    <p class="eyebrow">TikTok integration demo</p>
+    <h1>Content Studio</h1>
+    <p class="lede legal-lede">First-party publishing for the official Manafall TikTok (<strong>@manafalltiktoc</strong>). This page demonstrates <strong>Login Kit</strong> and <strong>Content Posting API</strong> (<code>user.info.basic</code>, <code>video.publish</code>) on the Manafall website domain.</p>
+
+    <section class="studio-card">
+      <h2>1. Setup (Sandbox)</h2>
+      <p class="hint">Use your TikTok Developer Portal <strong>Sandbox</strong> client key. Redirect URI must be registered exactly:</p>
+      <code class="block">https://jla1190.github.io/manafall-website/content-studio/callback.html</code>
+      <label class="field">
+        <span>Client key</span>
+        <input id="clientKey" type="text" autocomplete="off" placeholder="Paste Sandbox client key" />
+      </label>
+      <button type="button" class="btn primary" id="saveKeyBtn">Save client key</button>
+    </section>
+
+    <section class="studio-card">
+      <h2>2. Login Kit</h2>
+      <p class="hint">Authorize @manafalltiktoc (or your Sandbox target user). Scopes requested: <code>user.info.basic</code>, <code>video.publish</code>.</p>
+      <div class="row">
+        <button type="button" class="btn primary" id="loginBtn">Connect with TikTok</button>
+        <span id="authStatus" class="status">Not connected</span>
+      </div>
+      <pre id="authDetail" class="log" hidden></pre>
+    </section>
+
+    <section class="studio-card">
+      <h2>3. Access token (Sandbox)</h2>
+      <p class="hint">After Login Kit returns a <code>code</code>, exchange it for an access token in the Developer Portal Sandbox (or your secure server). Paste the Sandbox <strong>user access token</strong> here for the posting demo. Never commit the client secret.</p>
+      <label class="field">
+        <span>User access token</span>
+        <input id="accessToken" type="password" autocomplete="off" placeholder="act...." />
+      </label>
+      <button type="button" class="btn ghost" id="saveTokenBtn">Save token for this session</button>
+      <button type="button" class="btn ghost" id="creatorInfoBtn">Query creator info</button>
+      <pre id="creatorLog" class="log" hidden></pre>
+    </section>
+
+    <section class="studio-card">
+      <h2>4. Content Posting API</h2>
+      <p class="hint">Direct Post init with <code>FILE_UPLOAD</code>, then upload the video bytes. Unaudited/sandbox posts may be private-only.</p>
+      <label class="field">
+        <span>Caption / title</span>
+        <input id="caption" type="text" maxlength="150" value="Manafall — multiplayer survival. Build, fight, explore." />
+      </label>
+      <label class="field">
+        <span>Privacy</span>
+        <select id="privacy">
+          <option value="SELF_ONLY">SELF_ONLY (sandbox / unaudited)</option>
+          <option value="PUBLIC_TO_EVERYONE">PUBLIC_TO_EVERYONE</option>
+          <option value="FOLLOWER_OF_CREATOR">FOLLOWER_OF_CREATOR</option>
+          <option value="MUTUAL_FOLLOW_FRIENDS">MUTUAL_FOLLOW_FRIENDS</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Video file (mp4)</span>
+        <input id="videoFile" type="file" accept="video/mp4,video/quicktime,.mp4,.mov" />
+      </label>
+      <button type="button" class="btn primary" id="publishBtn">Publish to TikTok</button>
+      <pre id="publishLog" class="log" hidden></pre>
+    </section>
+  </main>
+
+  <footer>
+    <img src="../assets/symbol.png" alt="" width="28" height="28" />
+    <p>&copy; <span id="year"></span> Jean-Luc Alexander - Manafall</p>
+    <p class="fine"><a href="../terms.html">Terms of Service</a> · Demo for TikTok for Developers review</p>
+  </footer>
+
+  <script src="../aurora.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>
