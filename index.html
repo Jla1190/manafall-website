@@ -26,6 +26,7 @@
       <nav class="links">
         <a href="#trailer">Trailer</a>
         <a href="#features">Features</a>
+        <a href="#from-the-road">Pictures</a>
         <a href="#download">Download</a>
         <a href="#support">Support</a>
         <a id="discordNav" href="https://discord.gg/CH8GjWaDnx" target="_blank" rel="noopener noreferrer">Discord</a>
@@ -118,6 +119,29 @@
       </div>
     </section>
 
+    <section id="from-the-road" class="gallery-section">
+      <h2 class="reveal">From the road</h2>
+      <p class="gallery-lead reveal">Player pictures and clips from Manafall. Jean-Luc looks at each one. Nothing goes on this wall until he accepts it.</p>
+      <p class="gallery-empty reveal" id="galleryEmpty">No player pictures on the wall yet. Send one below.</p>
+      <div class="gallery-grid" id="galleryGrid"></div>
+
+      <div class="panel-inner gallery-submit reveal">
+        <h3>Send a picture or clip</h3>
+        <p class="panel-copy">Use a YouTube, Imgur, or other https link to the file. GitHub will open with your post filled in. You need a free GitHub account to send it. If you do not have one, share the clip on Discord instead.</p>
+        <form id="galleryForm" class="gallery-form">
+          <label class="gallery-label" for="galleryName">Your name</label>
+          <input id="galleryName" name="name" type="text" maxlength="80" required autocomplete="nickname" />
+          <label class="gallery-label" for="galleryCaption">What happened</label>
+          <textarea id="galleryCaption" name="caption" rows="3" maxlength="500" required placeholder="Built a yurt by the swamp after the nightling fight."></textarea>
+          <label class="gallery-label" for="galleryLinks">Picture or video links</label>
+          <textarea id="galleryLinks" name="links" rows="3" required placeholder="https://youtu.be/..."></textarea>
+          <button type="submit" class="btn primary wide"><span>Send for review</span></button>
+        </form>
+        <p class="note" id="galleryFormStatus"></p>
+        <p class="note">Prefer the GitHub form? <a id="galleryTemplateLink" href="https://github.com/Jla1190/manafall-website/issues/new?template=from-the-road.yml" target="_blank" rel="noopener noreferrer">Open it here</a>.</p>
+      </div>
+    </section>
+
     <section id="download" class="panel reveal">
       <div class="panel-inner">
         <h2>Download</h2>
@@ -169,13 +193,14 @@
   <footer>
     <img src="assets/symbol.png" alt="" width="28" height="28" />
     <p>&copy; <span id="year"></span> Jean-Luc Alexander - Manafall</p>
-    <p class="fine"><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · Donations processed by Ko-fi. This site does not store card numbers. Also listed on <a id="itchFooter" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">itch.io</a>. Not affiliated with Valve.</p>
+    <p class="fine"><a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · Donations processed by Ko-fi. This site does not store card numbers. Also listed on <a id="itchFooter" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">itch.io</a>. Not affiliated with Valve. <a href="review.html">Review player pictures</a>.</p>
   </footer>
 
   <script src="config.js"></script>
   <script src="aurora.js"></script>
   <script src="site.js"></script>
-  <script src="music.js"></script>
+  <script src="gallery.js"></script>
+  <script src="music.js?v=2"></script>
   <script src="trailer-audio.js"></script>
 </body>
 </html>

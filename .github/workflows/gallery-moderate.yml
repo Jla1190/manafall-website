@@ -1,0 +1,232 @@
+name: Gallery moderate
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  waiting:
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title || '';
+            const labels = (issue.labels || []).map((l) => l.name);
+            const fromRoad = labels.includes('from-the-road') || /^\[From the road\]/i.test(title);
+            if (!fromRoad) return;
+
+            const names = (issue.labels || []).map((l) => l.name);
+            for (const spec of [
+              { name: 'from-the-road', color: '7dd3ff', description: 'Player picture or clip waiting for review' },
+              { name: 'gallery-approved', color: '62e0a8', description: 'Post this on the From the road page' },
+              { name: 'gallery-denied', color: 'ff5e5b', description: 'Do not post this on the site' }
+            ]) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: spec.name,
+                  color: spec.color,
+                  description: spec.description
+                });
+              } catch (err) {
+                if (err.status !== 422) throw err;
+              }
+            }
+
+            if (!names.includes('from-the-road')) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: ['from-the-road']
+              });
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: 'This is in the review pile. It stays off the public page until Jean-Luc marks it `gallery-approved` or `gallery-denied`.'
+            });
+
+  decide:
+    if: github.event.action == 'labeled' && (github.event.label.name == 'gallery-approved' || github.event.label.name == 'gallery-denied')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const issue = context.payload.issue;
+            const label = context.payload.label.name;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const number = issue.number;
+
+            function plain(s, max) {
+              return String(s || '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\r/g, '')
+                .replace(/[ \t]+\n/g, '\n')
+                .trim()
+                .slice(0, max);
+            }
+
+            function section(body, heading) {
+              const re = new RegExp('###\\s*' + heading + '\\s*\\n([\\s\\S]*?)(?=\\n###\\s|$)', 'i');
+              const m = String(body || '').match(re);
+              return m ? m[1].trim() : '';
+            }
+
+            function youtubeId(url) {
+              if (!url) return '';
+              const s = String(url).trim();
+              if (/^[A-Za-z0-9_-]{11}$/.test(s)) return s;
+              const m = s.match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|embed\/|watch\?.*v=|live\/))([A-Za-z0-9_-]{11})/);
+              return m ? m[1] : '';
+            }
+
+            function vimeoId(url) {
+              const m = String(url).match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+              return m ? m[1] : '';
+            }
+
+            function hostOk(hostname) {
+              const h = hostname.toLowerCase();
+              const allow = [
+                'i.imgur.com', 'imgur.com', 'www.imgur.com',
+                'youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be',
+                'user-images.githubusercontent.com', 'objects.githubusercontent.com',
+                'github.com', 'www.github.com',
+                'media.discordapp.net', 'cdn.discordapp.com',
+                'i.ibb.co', 'ibb.co',
+                'i.gyazo.com', 'gyazo.com',
+                'streamable.com', 'www.streamable.com',
+                'vimeo.com', 'www.vimeo.com', 'player.vimeo.com',
+                'raw.githubusercontent.com'
+              ];
+              return allow.includes(h) || h.endsWith('.imgur.com');
+            }
+
+            function classify(url) {
+              try {
+                const u = new URL(url);
+                if (u.protocol !== 'https:') return null;
+                if (!hostOk(u.hostname)) return null;
+                const yt = youtubeId(url);
+                if (yt) return { type: 'youtube', url: 'https://www.youtube.com/watch?v=' + yt, id: yt };
+                const vim = vimeoId(url);
+                if (vim) return { type: 'vimeo', url: 'https://vimeo.com/' + vim, id: vim };
+                const pathName = u.pathname.toLowerCase();
+                if (/\.(png|jpe?g|gif|webp|avif)$/.test(pathName) || /user-attachments|user-images\.githubusercontent|media\.discordapp|cdn\.discordapp|i\.imgur|i\.ibb|i\.gyazo/.test(u.hostname + u.pathname)) {
+                  return { type: 'image', url: u.href };
+                }
+                if (/github\.com$/i.test(u.hostname) && /\/user-attachments\//.test(u.pathname)) {
+                  return { type: 'image', url: u.href };
+                }
+                return { type: 'link', url: u.href };
+              } catch (err) {
+                return null;
+              }
+            }
+
+            function extractMedia(text) {
+              const found = [];
+              const seen = new Set();
+              const blob = String(text || '');
+              const re = /https:\/\/[^\s<>)"']+/gi;
+              let m;
+              while ((m = re.exec(blob)) && found.length < 8) {
+                const cleaned = m[0].replace(/[.,;:]+$/, '');
+                const item = classify(cleaned);
+                if (!item) continue;
+                const key = item.type + ':' + (item.id || item.url);
+                if (seen.has(key)) continue;
+                seen.add(key);
+                found.push(item);
+              }
+              return found;
+            }
+
+            if (label === 'gallery-denied') {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: number,
+                body: 'Jean-Luc declined this for the public page. The issue is closed.'
+              });
+              if (issue.state !== 'closed') {
+                await github.rest.issues.update({ owner, repo, issue_number: number, state: 'closed', state_reason: 'not_planned' });
+              }
+              return;
+            }
+
+            const body = issue.body || '';
+            function titleFallback(title) {
+              return String(title || '').replace(/^\[From the road\]\s*/i, '').trim();
+            }
+            const name = plain(section(body, 'Your name') || issue.user.login || 'Traveler', 80);
+            const caption = plain(section(body, 'What happened') || titleFallback(issue.title), 500);
+            const media = extractMedia(section(body, 'Picture or video links') || body);
+
+            if (!media.length) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: number,
+                body: 'Approve ran, but there was no usable https picture or video link (YouTube, Imgur, GitHub image, Discord image). Fix the links and add `gallery-approved` again.'
+              });
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number: number, name: 'gallery-approved' });
+              } catch (err) {}
+              return;
+            }
+
+            const file = path.join(process.cwd(), 'gallery.json');
+            let gallery = { items: [] };
+            if (fs.existsSync(file)) {
+              gallery = JSON.parse(fs.readFileSync(file, 'utf8'));
+              if (!Array.isArray(gallery.items)) gallery.items = [];
+            }
+            const id = 'issue-' + number;
+            if (gallery.items.some((it) => it.id === id)) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: number,
+                body: 'This post is already on the From the road page.'
+              });
+              if (issue.state !== 'closed') {
+                await github.rest.issues.update({ owner, repo, issue_number: number, state: 'closed' });
+              }
+              return;
+            }
+
+            gallery.items.unshift({
+              id,
+              name,
+              caption,
+              media,
+              issue: number,
+              approvedAt: Math.floor(Date.now() / 1000)
+            });
+            fs.writeFileSync(file, JSON.stringify(gallery, null, 2) + '\n');
+
+            const { execSync } = require('child_process');
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "41898282+github-actions[bot]@users.noreply.github.com"');
+            execSync('git add gallery.json');
+            execSync('git diff --cached --quiet || git commit -m "Post approved From the road picture from issue #' + number + '."');
+            execSync('git push');
+
+            await github.rest.issues.createComment({
+              owner, repo, issue_number: number,
+              body: 'Posted on [From the road](https://jla1190.github.io/manafall-website/#from-the-road). It can take a minute for GitHub Pages to rebuild.'
+            });
+            if (issue.state !== 'closed') {
+              await github.rest.issues.update({ owner, repo, issue_number: number, state: 'closed' });
+            }

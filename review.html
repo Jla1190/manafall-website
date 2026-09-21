@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Manafall - Review player pictures</title>
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/symbol.png" alt="" width="40" height="40" />
+        <span>MANAFALL</span>
+      </a>
+      <nav class="links">
+        <a href="index.html#from-the-road">Public page</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="review-main">
+    <section class="panel reveal visible">
+      <div class="panel-inner review-intro">
+        <h2>Review player pictures</h2>
+        <p class="panel-copy">Players send pictures and clips from Manafall. They do not appear on the public page until you approve them. Deny closes the request and leaves it off the wall.</p>
+        <p class="note">Use a GitHub fine-grained token for <strong>Jla1190/manafall-website</strong> with Issues read and write. Paste it here only. It stays in this browser tab, not on the server.</p>
+        <label class="gallery-label" for="reviewToken">GitHub token</label>
+        <input id="reviewToken" type="password" autocomplete="off" spellcheck="false" />
+        <div class="review-toolbar">
+          <button type="button" class="btn primary" id="reviewLoad"><span>Load waiting posts</span></button>
+          <button type="button" class="btn ghost" id="reviewForget"><span>Forget token</span></button>
+        </div>
+        <p class="review-status" id="reviewStatus"></p>
+      </div>
+    </section>
+    <div id="reviewList" class="review-list"></div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="aurora.js"></script>
+  <script src="review.js"></script>
+</body>
+</html>
