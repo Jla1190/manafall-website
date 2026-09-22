@@ -2,12 +2,12 @@
     "game":  "manafall",
     "platform":  "win64",
     "version":  "0.1.14",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.14/manafall-0.1.14-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.14/manafall-0.1.14-win64.zip.002",
+    "url":  "",
+    "url2":  "",
     "url3":  "",
-    "sha256":  "ea2ffa422962c604ed35aa511d02cbd3ddc34141140f08699af0a170438f4bd9",
+    "sha256":  "",
     "notes":  "Patch 0.1.14 (auto-patch)\n\nPlayers already on 0.1.13 can take this update in-game: the menu checks the patch list, downloads a direct zip (or zip parts), then applies after a short countdown you can cancel. Mega is still for first-time installs and anyone below 0.1.13.\n\nCreatures and NPCs\n- Shared relationship table: Attack, Flee, Ally, or Ignore between factions (Compact, Bandit, Livestock, ApexPredator, Hellhound, RuinWarden, Aquatic, Spirit, Troll, Mammoth, CoastalScavenger, Player).\n- Bandits and wolves press livestock; yards and villagers flee them.\n- Crocodiles and other water hunters take Compact folk and livestock near the bank; those flee the water.\n- Trolls and mammoths keep their war; hellhounds press mammoths and ignore village yards.\n- Crabs flee larger hunters. Spirits stay ignore-unless-provoked. Same-faction stays ally.\n\nUpdates\n- Auto-download works when the public patch list has a direct http(s) zip URL (or zip parts under 2 GB each for GitHub Releases). Mega links still open the website Download button instead of quitting into PowerShell.\n\nStill from 0.1.13\n- Held items stay visible (LOD strip on hand props).\n- Friends gamertag typing no longer leaks into gameplay; Esc closes Friends and Chat.\n- Thinner, farther trees; leaves in fog; roof stops rain and muffles sound.\n- Rare lightning hits on buildings; wood fire spreads when dry; rain puts it out.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790088960
+    "publishedAt":  1790089009
 }
