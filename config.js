@@ -1,6 +1,6 @@
 window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
-  downloadUrl: "https://mega.nz/file/zZMTzAhb#Gql2tsWUs3tJZ5j7lF65Gi6-mxLWON_47x6lJS0rFKQ",
+  downloadUrl: "https://mega.nz/file/2dFEDLwT#vfIfqf-xIZPLoOzBic9vKCRW7jHc7zllZIKWVKAOG6Q",
   downloadLabel: "Download for Windows",
   creatorName: "Jean-Luc Alexander",
   discordUrl: "https://discord.gg/CH8GjWaDnx",
