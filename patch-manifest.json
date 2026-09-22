@@ -1,13 +1,13 @@
 {
-    "game":  "manafall",
-    "platform":  "win64",
-    "version":  "0.1.14",
-    "url":  "",
-    "url2":  "",
-    "url3":  "",
-    "sha256":  "",
-    "notes":  "Patch 0.1.14 (auto-patch)\n\nPlayers already on 0.1.13 can take this update in-game: the menu checks the patch list, downloads a direct zip (or zip parts), then applies after a short countdown you can cancel. Mega is still for first-time installs and anyone below 0.1.13.\n\nCreatures and NPCs\n- Shared relationship table: Attack, Flee, Ally, or Ignore between factions (Compact, Bandit, Livestock, ApexPredator, Hellhound, RuinWarden, Aquatic, Spirit, Troll, Mammoth, CoastalScavenger, Player).\n- Bandits and wolves press livestock; yards and villagers flee them.\n- Crocodiles and other water hunters take Compact folk and livestock near the bank; those flee the water.\n- Trolls and mammoths keep their war; hellhounds press mammoths and ignore village yards.\n- Crabs flee larger hunters. Spirits stay ignore-unless-provoked. Same-faction stays ally.\n\nUpdates\n- Auto-download works when the public patch list has a direct http(s) zip URL (or zip parts under 2 GB each for GitHub Releases). Mega links still open the website Download button instead of quitting into PowerShell.\n\nStill from 0.1.13\n- Held items stay visible (LOD strip on hand props).\n- Friends gamertag typing no longer leaks into gameplay; Esc closes Friends and Chat.\n- Thinner, farther trees; leaves in fog; roof stops rain and muffles sound.\n- Rare lightning hits on buildings; wood fire spreads when dry; rain puts it out.",
-    "page":  "https://jla1190.github.io/manafall-website/#download",
-    "mandatory":  false,
-    "publishedAt":  1790089009
+  "game": "manafall",
+  "platform": "win64",
+  "version": "0.1.15",
+  "url": "https://github.com/Jla1190/manafall-website/releases/download/v0.1.15/manafall-0.1.15-win64.zip.001",
+  "url2": "https://github.com/Jla1190/manafall-website/releases/download/v0.1.15/manafall-0.1.15-win64.zip.002",
+  "url3": "",
+  "sha256": "37cbbec0bf549cdadc68eea2eabc63936da66717b8b28e03762bc7314b42d90c",
+  "notes": "Patch 0.1.15 (auto-patch)\n\nPlayers on 0.1.14 can take this in-game: the menu checks the patch list, downloads the zip parts, then applies after a short countdown you can cancel. Mega is still for first-time installs and anyone below 0.1.14.\n\nCombat and play\n- Death camera stays near your body instead of jumping to a far orbit.\n- Wild rune sprites dissolve and despawn when beaten to 0 HP (they no longer sit immortal after Health hits zero).\n- Rune sprite idle/walk animates on host and clients.\n- Other players' locomotion animates through instead of freezing on the first frame.\n- Host after Create Server unlocks move/look and mouse lock correctly.\n- Nightling mortar charges before release; longer charge means bigger blast, damage, and push.\n- Nightling body hits register on more of the mesh.\n- Ride-bug stand height matches host on clients (lift raised).\n- Creature splash / relationship hits reach rune sprites and other factions more reliably.\n- Loot chests roll the full weapon and armor sets (rare/epic stay high-end).\n\nWorld and sky\n- Partly cloudy days sit between clear blue and storm decks (broken cumulus mid-cover).\n- Clear stays sparse fair-weather puffs; storms stay dark and packed.\n- Tree shade no longer steals sun light off nearby trees as you move.\n- Players stay visible out to the fog distance.\n- Pause menu: Resume at the top with spacing; Quit Game at the bottom with spacing.\n- Pause keeps look/walk off and the mouse unlocked.\n- Mushroom fairy VFX no longer hard square particles.\n\nWebsite\n- Visitor total / today and download counters on the site footer.\n\nStill from 0.1.14\n- Shared creature relationship table (Attack / Flee / Ally / Ignore).\n- Auto-download via direct https zip parts on the public patch list.",
+  "page": "https://jla1190.github.io/manafall-website/#download",
+  "mandatory": false,
+  "publishedAt": 1790096827
 }
