@@ -1,11 +1,11 @@
-{
+﻿{
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.11",
+    "version":  "0.1.12",
     "url":  "",
     "sha256":  "",
-    "notes":  "Patch 0.1.11\n\nThis is a full Windows build. Get it from the website Download button. The game will not quit itself to install this.\n\nWorld\n- Daytime animals are half as many as in 0.1.10. Night stays on its thinner scale.\n- Grass, bushes, and rocks are about three times as thick as 0.1.10. A forest chunk aims for 42 trees (0.1.10 aimed for 20).\n- Plain stone is the common rock. Copper is about a quarter as common as stone. Iron is rarer. Gold and skyiron are scarce, and an ore vein stays a small cluster.\n\nCreatures\n- A creature that is far from you and outside the game camera stops running its scripts until it is near or on screen.\n\nWater\n- The blue underwater tint stays off until the camera is under the surface.\n- On dry ground the water script no longer searches every object in the world. That search was stalling the frame.\n\nLook\n- Fog and clouds are drawn on a coarse grid and laid over a full-resolution picture. Trees stay sharp. The softness is the fog.",
+    "notes":  "Patch 0.1.12\n\nThis is a full Windows build. Get it from the website Download button. The game will not quit itself to install this.\n\nMultiplayer\n- Other players can see the item you have selected in hand.\n- Host and clients share the same time of day and day of year.\n- Remote player walk and run clips play through instead of freezing on the first frame.\n- Rune sprites walk and idle on clients.\n- Ride bug lift height matches the host, and sits about three feet higher.\n- Hold INS to see who is on the current server.\n- Chat typing no longer steals move and look. Group and Friends buttons no longer overlap.\n\nWorld\n- Clear weather fog sits at about two thirds the old distance.\n- Leaves sit in the fog instead of on top of it.\n- Walking backward plays walk and run in reverse.\n- Nightlings detect farther and are slightly smaller.\n- Trolls pick a new clear walk when blocked.\n- Crocodiles no longer float high off the ground.\n\nSealclash\n- The table AI takes downs first when a Front is soft enough.\n- Pip economy is slower.\n\nUI\n- Settings live on the pause menu, including the screen border control.\n\nStill from 0.1.11\n- Daytime animals at half density. Dense foliage. Scarcer ore. Far creatures sleep their scripts. Underwater tint only when wet. Cheaper fog and clouds.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790037709
+    "publishedAt":  1790060645
 }
