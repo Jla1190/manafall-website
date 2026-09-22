@@ -1,13 +1,13 @@
 {
   "game": "manafall",
   "platform": "win64",
-  "version": "0.1.18",
-  "url": "https://jla1190.github.io/manafall-website/files/manafall-0.1.18-win64.zip",
+  "version": "0.1.16",
+  "url": "",
   "url2": "",
   "url3": "",
-  "sha256": "e92047ff10415347fa9e475d46ef4240809b0538956798f81c696a7a2b9a0d93",
-  "notes": "﻿Patch 0.1.18 (auto-patch) — recovery\n\nIf 0.1.17 left the game frozen after restart: close Manafall in Task Manager, then let this update apply (or run the website apply script / reinstall from Download).\n\n0.1.17 mixed an older Manafall.exe with newer script DLLs. This build matches the player and scripts again.\n\nAlso includes everything from 0.1.17:\n\nLoot and chests\n- Ground loot fills the hotbar first when there is room.\n- Chest UI: Take All (R) and Put All (T); Shift-click quick-moves; opening loot opens your bag.\n- Low-end / high-end chests roll the right weapon and armor tiers.\n\nCreatures\n- Creatures can hurt each other again.\n- Heavy fast impacts can hurt you.\n- Ride bug height sync and a bit higher stand pose.\n\nControls and death\n- Inventory mouse stays unlocked while the bag is open.\n- Death camera stays on your corpse.\n- Host HUD shows public Join list status.\n\nOnline / menu / patching\n- Shared public Join list advertising.\n- Host and client keep the same time of day.\n- Main menu no longer draws terrain trees.\n- Near tree leaves take fog like far cards.\n- Multi-part patch join/hash does not freeze the menu.\n- Clearer message when an update file is missing (not raw HTTP 404).",
+  "sha256": "",
+  "notes": "Patch channel paused\n\nThe 0.1.17 / 0.1.18 auto-patches left some installs freezing on the main menu.\n\nPlease download a fresh Windows build from the website Download button (Mega). Do not use in-game Apply until a new full client patch is posted.\n\nSorry for the breakage.",
   "page": "https://jla1190.github.io/manafall-website/#download",
   "mandatory": false,
-  "publishedAt": 1790110980
+  "publishedAt": 1790112000
 }
