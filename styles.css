@@ -209,6 +209,44 @@ footer {
   text-align: center; padding: 28px 18px 48px; color: var(--muted);
 }
 footer img { opacity: .9; margin-bottom: 8px; }
+.site-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  margin: 18px auto 14px;
+  max-width: 34rem;
+}
+.site-stat {
+  min-width: 6.5rem;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(10, 16, 28, 0.55);
+  display: grid;
+  gap: 2px;
+}
+.site-stat strong {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.site-stat span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.stat-inline {
+  margin: 10px 0 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.stat-inline strong {
+  color: var(--ice);
+  font-weight: 600;
+}
 .fine { font-size: .75rem; max-width: 36rem; margin: 8px auto 0; opacity: .85; }
 .fine a { color: var(--ice); text-decoration: none; }
 .fine a:hover { text-decoration: underline; }

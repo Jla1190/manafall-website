@@ -153,6 +153,7 @@
         <a class="btn primary wide" id="downloadBtn" href="#" aria-disabled="true">
           <span id="downloadLabel">Download for Windows</span>
         </a>
+        <p class="stat-inline" id="downloadCountLine">Downloaded <strong id="statDownloadsInline">—</strong> times from this site</p>
         <a class="btn ghost wide" id="itchBtn" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">
           <span>Get it on itch.io</span>
         </a>
@@ -199,12 +200,27 @@
   <footer>
     <img src="assets/symbol.png" alt="" width="28" height="28" />
     <p>&copy; <span id="year"></span> Jean-Luc Alexander - Manafall</p>
+    <div class="site-stats" aria-label="Site visitors and downloads">
+      <div class="site-stat">
+        <strong id="statVisitsTotal">—</strong>
+        <span>visitors total</span>
+      </div>
+      <div class="site-stat">
+        <strong id="statVisitsToday">—</strong>
+        <span>visitors today</span>
+      </div>
+      <div class="site-stat">
+        <strong id="statDownloads">—</strong>
+        <span>downloads</span>
+      </div>
+    </div>
     <p class="fine"><span id="ageFooter">Teen 13+ · Fantasy Violence, Mild Blood, Mild Drug Use</span> · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · Donations processed by Ko-fi. This site does not store card numbers. Also listed on <a id="itchFooter" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">itch.io</a>. Not affiliated with Valve. <a href="review.html">Review player pictures</a>.</p>
   </footer>
 
   <script src="config.js"></script>
   <script src="aurora.js"></script>
   <script src="site.js"></script>
+  <script src="counters.js"></script>
   <script src="gallery.js"></script>
   <script src="music.js?v=2"></script>
   <script src="trailer-audio.js"></script>
