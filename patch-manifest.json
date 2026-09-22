@@ -1,13 +1,13 @@
 {
-  "game": "manafall",
-  "platform": "win64",
-  "version": "0.1.16",
-  "url": "",
-  "url2": "",
-  "url3": "",
-  "sha256": "",
-  "notes": "Patch channel paused\n\nThe 0.1.17 / 0.1.18 auto-patches left some installs freezing on the main menu.\n\nPlease download a fresh Windows build from the website Download button (Mega). Do not use in-game Apply until a new full client patch is posted.\n\nSorry for the breakage.",
-  "page": "https://jla1190.github.io/manafall-website/#download",
-  "mandatory": false,
-  "publishedAt": 1790112000
+    "game":  "manafall",
+    "platform":  "win64",
+    "version":  "0.1.19",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.19/manafall-0.1.19-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.19/manafall-0.1.19-win64.zip.002",
+    "url3":  "",
+    "sha256":  "1073890c676b46d9a241c36d6b6b063fd5e9f56c9a3b77243523198629504ac2",
+    "notes":  "Patch 0.1.19 (full Windows client)\n\nThis is a full reinstall build. Download it from the website Download button (Mega). Do not rely on the old 0.1.17 / 0.1.18 Apply patches — those could freeze the main menu.\n\nMenu freeze fixes:\n- Menu volumetric clouds wait a short time after load so the first frames do not look like Not Responding.\n- Cheaper menu cloud ray steps.\n- Dead LAN listing URLs in PlayerPrefs no longer stall update checks.\n\nAlso includes recent play fixes: loot hotbar-first, chest Take/Put All, creature vs creature, death cam, inventory mouse, public host list, and related Online updates.",
+    "page":  "https://jla1190.github.io/manafall-website/#download",
+    "mandatory":  false,
+    "publishedAt":  1790113920
 }
