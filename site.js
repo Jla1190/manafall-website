@@ -17,6 +17,19 @@
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 
+  const ageLabel = [cfg.ageRating, cfg.ageMinimum].filter(Boolean).join(' ').trim() || 'Teen 13+';
+  const ageDescriptors = cfg.ageDescriptors || 'Fantasy Violence, Mild Blood, Mild Drug Use';
+  const ageMark = document.getElementById('ageMark');
+  const ageDesc = document.getElementById('ageDesc');
+  const ageDownload = document.getElementById('ageRatingDownload');
+  const ageNoteEl = document.getElementById('ageNote');
+  const ageFooter = document.getElementById('ageFooter');
+  if (ageMark) ageMark.textContent = ageLabel;
+  if (ageDesc) ageDesc.textContent = ageDescriptors;
+  if (ageDownload) ageDownload.textContent = 'Rated ' + ageLabel + ' — ' + ageDescriptors;
+  if (ageNoteEl && cfg.ageNote) ageNoteEl.textContent = cfg.ageNote;
+  if (ageFooter) ageFooter.textContent = ageLabel + ' · ' + ageDescriptors;
+
   const dlNote = document.getElementById('downloadNote');
   const kofiNote = document.getElementById('kofiNote');
   const downloadBtn = document.getElementById('downloadBtn');
