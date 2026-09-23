@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.19",
-    "url":  "",
-    "url2":  "",
+    "version":  "0.1.28",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.28/manafall-0.1.28-win64.part1",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.28/manafall-0.1.28-win64.part2",
     "url3":  "",
-    "sha256":  "",
-    "notes":  "The Windows download on this site is 0.1.19.\n\nIn-game updates after that build were script-only patches made from a newer game. Installing them on the website download made Manafall restart and crash.\n\nThose updates are turned off. Download the Windows build and play that. Do not install an in-game patch on top of it.",
+    "sha256":  "46a90b070a098072583cf95a80a405b2fb8bbd20256a5f4325c0e9dd307c1250",
+    "notes":  "Patch 0.1.28\n\nFull matched update for the Windows download on the website. Scripts and packed game files come from the same build, so this will not crash the old website copy the way the small script-only patches did.\n\nWhat changed\n- Hold Tab in the world to see who is on this server. Insert still opens the same list.\n- Full trees stop where the distant stand-ins start. Trunks and rocks only throw shadows close to you.\n- Looking straight at the sun blinds you, and the glare goes away when you look away.\n- Lightning bolts are back in storms.\n- When someone joins, their name shows on the left. Another join stacks under the one still fading.\n\nThe installer is Manafall.cmd. It waits until the game has closed, then copies the update and opens Manafall again. Need several GB free on the drive while it downloads and installs.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
-    "mandatory":  false,
-    "publishedAt":  1790182300
+    "mandatory":  true,
+    "publishedAt":  1790190000
 }
