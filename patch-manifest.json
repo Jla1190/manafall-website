@@ -2,12 +2,12 @@
     "game":  "manafall",
     "platform":  "win64",
     "version":  "0.1.20",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.20/manafall-0.1.20-win64.zip",
+    "url":  "",
     "url2":  "",
     "url3":  "",
-    "sha256":  "c6d0b67fef4a85e971d93e3868b0fe3c94baddf4a14137aa2ee72d8713e120b1",
-    "notes":  "Patch 0.1.20\n\nPerformance\n- Fixed a stuck height-stitch remesh that rebuilt the same streaming terrain tiles every frame (Split world ~195 ms / ~5 FPS). Each tile remeshes once, then the pass stops.\n\nDesktop shortcut\n- In-game “Add shortcut” now creates Desktop\\Manafall.lnk through PowerShell (same approach as the patcher). COM-only create was unreliable.\n- Create-Desktop-Shortcut.cmd / .ps1 next to Manafall.exe handle Desktop and OneDrive Desktop paths more carefully.\n- If a shortcut was created before and later deleted, the menu can offer again. A one-time “Not now” still stays quiet.\n\nClients / inventory\n- Pure clients now see wood, stone, and other server grants on the hotbar/inventory (server notifies the owner after pickup).\n\nCombat / HUD\n- Hurt blood overlay is local-only again. Remote players no longer leave the shared blood frame stuck after you respawn.\n- Heat-stroke collapse can kill even when the health bar is not empty yet.\n- Thirst / hunger DoT no longer spams the hurt sound every tick.\n\nSpawn\n- First wilderness spawn stays on dry land above the sea, clears landmarks by ~200 m, and reuses a pose warmed under the loading screen so you are less likely to appear underground.\n\nMultiplayer safety\n- Server anti-cheat strike ledger: movement speed / teleport watch, debug command refusal in player builds, jail teleports grant a short movement grace.\n- Player chat HUD (proximity / global / group) ships with the client.\n\nAlso includes the 0.1.19 menu hang fixes if you are still on an older install — prefer Apply from Online, or Mega Download for a full reinstall.",
+    "sha256":  "",
+    "notes":  "Patch channel paused briefly\n\nThe 0.1.20 auto-patch copied new globalgamemanagers files onto the 0.1.19 Mega install. That mismatch can crash on startup.\n\nIf the game crashes after Apply:\n1. Download a fresh Windows build from the website Download button (Mega 0.1.19 full client).\n2. Wait for the next Apply patch (0.1.21) — Managed scripts only, no globalgamemanagers.\n\nSorry for the breakage.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790167264
+    "publishedAt":  1790168048
 }
