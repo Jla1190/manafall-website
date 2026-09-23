@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.20",
-    "url":  "",
+    "version":  "0.1.21",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.21/manafall-0.1.21-win64.zip",
     "url2":  "",
     "url3":  "",
-    "sha256":  "",
-    "notes":  "Patch channel paused briefly\n\nThe 0.1.20 auto-patch copied new globalgamemanagers files onto the 0.1.19 Mega install. That mismatch can crash on startup.\n\nIf the game crashes after Apply:\n1. Download a fresh Windows build from the website Download button (Mega 0.1.19 full client).\n2. Wait for the next Apply patch (0.1.21) — Managed scripts only, no globalgamemanagers.\n\nSorry for the breakage.",
+    "sha256":  "d926a25675392ab893bf0c5e624758fbfee838a316e1156f54c421b5ae952dc4",
+    "notes":  "Patch 0.1.21 (safe Apply)\n\nFixes the 0.1.20 crash: that zip replaced globalgamemanagers without matching world data. This patch only updates Managed scripts and Desktop shortcut helpers.\n\nIncludes\n- FPS: stuck height-stitch remesh (~5 FPS / Split world) fixed\n- Desktop shortcut create via PowerShell\n- Client inventory grants visible on pure clients\n- Local-only hurt overlay; quieter thirst/hunger SFX; heat-stroke collapse\n- First wilderness spawn dry land / landmark clearance\n- Anti-cheat movement guard + jail grace\n- Player chat HUD\n\nIf 0.1.20 already crashed your install: Mega Download a fresh 0.1.19 first, then Apply this. Do not keep launching a crashed mixed install.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790168048
+    "publishedAt":  1790168206
 }
