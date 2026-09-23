@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.27",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.27/manafall-0.1.27-win64.zip",
+    "version":  "0.1.19",
+    "url":  "",
     "url2":  "",
     "url3":  "",
-    "sha256":  "88e87887e58bb70e093d9e9e7a7cb2de56fd77d60201b041db4a300c53dc3db6",
-    "notes":  "Patch 0.1.27\n\nFix: updates install through Manafall.cmd so closing the game can no longer kill the installer.\n\nWhat changed\n- Apply writes a pending update, starts Manafall.cmd separately, then quits\n- Manafall.cmd waits for the game to close, installs the zip, then opens Manafall again\n- Desktop shortcut should point at Manafall.cmd (Create-Desktop-Shortcut refreshed)\n\nIf an update still fails, check Desktop\\Manafall-patch-failed.txt and Game\\patch-apply.log",
+    "sha256":  "",
+    "notes":  "The Windows download on this site is 0.1.19.\n\nIn-game updates after that build were script-only patches made from a newer game. Installing them on the website download made Manafall restart and crash.\n\nThose updates are turned off. Download the Windows build and play that. Do not install an in-game patch on top of it.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790180718
+    "publishedAt":  1790182300
 }
