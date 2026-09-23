@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.22",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.22/manafall-0.1.22-win64.zip",
-    "url2":  "",
+    "version":  "0.1.23",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.23/manafall-0.1.23-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.23/manafall-0.1.23-win64.zip.002",
     "url3":  "",
-    "sha256":  "0979bcb50eb9912c1a6067a82777a99adf741dd32d1294d906e8f3c622f10a49",
-    "notes":  "Patch 0.1.22\n\nScript update for installs already on 0.1.21. Same safe Apply as 0.1.21: Managed scripts only. It does not replace world data.\n\nHotbar\n- The item in the selected hotbar slot shows in the slot. It had been drawn under the bottom of the screen, so the slot looked like an empty yellow square.\n\nJoin\n- Joining a hosted game no longer leaves you under the island. Terrain streams, and villagers can see you.\n\nStrikes\n- A strike tells you the count and the reason. The notice has a Dispute this button. It opens the Discord bug-reports channel.\n\nSun\n- Looking straight at the sun blinds the view. The glare clears as soon as you look away.\n\nMenu\n- Patch notes sit nearer the bottom of the online page. Back has a little more space than the other buttons. Your current name is no longer covered by the rename box.",
+    "sha256":  "284e8ebeb341ca549c087cb1a6fb9fa3a7fc1a9ee8d04679e6834efbed43830c",
+    "notes":  "Patch 0.1.23\n\nOre rocks\n- Copper, iron, gold, and skyiron no longer read as a colored crack web on dark stone.\n- Ore sits in pockets, stains, and flecks on the rock face. Crack ore is dialed down.\n- Distant rock copies use the same ore look as the close mesh.\n\nAlso since 0.1.22\n- Selected hotbar item picture stays in the slot\n- Joining a host no longer leaves you under the island\n- Strike notice with Dispute this link\n- Sun glare blinds when you look into it, clears when you look away\n- Online menu: patch notes lower, Back spaced, rename no longer covers current name\n\nThis Apply ships matched Game data from a fresh build so the stone materials land. Close Manafall before Apply.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790171454
+    "publishedAt":  1790175697
 }
