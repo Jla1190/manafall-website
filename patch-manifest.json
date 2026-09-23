@@ -1,13 +1,13 @@
 {
     "game": "manafall",
     "platform": "win64",
-    "version": "0.1.28",
-    "url": "",
+    "version": "0.1.30",
+    "url": "http://10.0.0.144:8791/manafall-test-0.1.30.zip",
     "url2": "",
     "url3": "",
-    "sha256": "",
-    "notes": "Windows download on the website is the full 0.1.28 game. In-game updates are off. Download Windows from the site and play that copy. Do not install a script patch on top of an older download.",
+    "sha256": "56109b5556b590d44d4cfa3546b09cd5c5596af1570bd2323ae7efe1374ec5e4",
+    "notes": "Test patch for a laptop on this same network. It only adds Manafall_Data/StreamingAssets/patch-test.txt. It does not replace the game.",
     "page": "https://jla1190.github.io/manafall-website/#download",
     "mandatory": false,
-    "publishedAt": 1790192800
+    "publishedAt": 1790209200
 }
