@@ -5,9 +5,9 @@
     "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.27/manafall-0.1.27-win64.zip",
     "url2":  "",
     "url3":  "",
-    "sha256":  null,
+    "sha256":  "88e87887e58bb70e093d9e9e7a7cb2de56fd77d60201b041db4a300c53dc3db6",
     "notes":  "Patch 0.1.27\n\nFix: updates install through Manafall.cmd so closing the game can no longer kill the installer.\n\nWhat changed\n- Apply writes a pending update, starts Manafall.cmd separately, then quits\n- Manafall.cmd waits for the game to close, installs the zip, then opens Manafall again\n- Desktop shortcut should point at Manafall.cmd (Create-Desktop-Shortcut refreshed)\n\nIf an update still fails, check Desktop\\Manafall-patch-failed.txt and Game\\patch-apply.log",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790180657
+    "publishedAt":  1790180718
 }
