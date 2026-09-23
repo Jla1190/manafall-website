@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.26",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.26/manafall-0.1.26-win64.zip",
+    "version":  "0.1.27",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.27/manafall-0.1.27-win64.zip",
     "url2":  "",
     "url3":  "",
-    "sha256":  "30a883b24885807cce137ce133a1c00a2f3f9e992b2e30a819511e7476a107b0",
-    "notes":  "Patch 0.1.26\n\nFix: after download, Manafall was quitting and killing the update installer with it. The game stayed closed, so it looked like a crash on restart.\n\nWhat changed\n- The Apply script now starts detached (survives Manafall closing)\n- Auto-Apply is off by default — download finishes, then click Apply when you want to restart\n- If Apply still fails, Manafall is relaunched and Manafall-patch-failed.txt is written on the Desktop\n\nThis is a small script Apply.",
+    "sha256":  null,
+    "notes":  "Patch 0.1.27\n\nFix: updates install through Manafall.cmd so closing the game can no longer kill the installer.\n\nWhat changed\n- Apply writes a pending update, starts Manafall.cmd separately, then quits\n- Manafall.cmd waits for the game to close, installs the zip, then opens Manafall again\n- Desktop shortcut should point at Manafall.cmd (Create-Desktop-Shortcut refreshed)\n\nIf an update still fails, check Desktop\\Manafall-patch-failed.txt and Game\\patch-apply.log",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790178911
+    "publishedAt":  1790180657
 }
