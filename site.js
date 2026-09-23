@@ -55,8 +55,9 @@
   const discordBtn = document.getElementById('discordBtn');
   const discordTop = document.getElementById('discordBtnTop');
   const discordNav = document.getElementById('discordNav');
+  const buildDiscordBtn = document.getElementById('buildDiscordBtn');
   if (cfg.discordUrl) {
-    [discordBtn, discordTop, discordNav].forEach((el) => {
+    [discordBtn, discordTop, discordNav, buildDiscordBtn].forEach((el) => {
       if (!el) return;
       el.href = cfg.discordUrl;
       el.target = '_blank';
@@ -68,8 +69,9 @@
   const itchNav = document.getElementById('itchNav');
   const itchFooter = document.getElementById('itchFooter');
   const itchNote = document.getElementById('itchNote');
+  const buildItchLink = document.getElementById('buildItchLink');
   if (cfg.itchUrl) {
-    [itchBtn, itchTop, itchNav, itchFooter].forEach((el) => {
+    [itchBtn, itchTop, itchNav, itchFooter, buildItchLink].forEach((el) => {
       if (!el) return;
       el.href = cfg.itchUrl;
       el.target = '_blank';
