@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.25",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.25/manafall-0.1.25-win64.zip",
+    "version":  "0.1.26",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.26/manafall-0.1.26-win64.zip",
     "url2":  "",
     "url3":  "",
-    "sha256":  "71f477ce750dae3ff17bd10a22052da89e0f86172d9b41dee701d401db422988",
-    "notes":  "Patch 0.1.25\n\nFix: update Apply no longer leaves Manafall closed when install fails.\n\nWhat went wrong\n- After download, Apply quits the game to unpack the zip\n- With the drive almost full (about 2 GB free), unpack failed\n- The game stayed closed, so it looked like a crash on restart\n\nWhat this does\n- Checks free disk before quitting to Apply\n- If Apply still fails, relaunches Manafall and writes Manafall-patch-failed.txt on the Desktop\n- Shows a short error dialog instead of dying silently\n\nThis is a small script Apply. Free several GB on C: before taking a large content update (ore materials from 0.1.23).",
+    "sha256":  "30a883b24885807cce137ce133a1c00a2f3f9e992b2e30a819511e7476a107b0",
+    "notes":  "Patch 0.1.26\n\nFix: after download, Manafall was quitting and killing the update installer with it. The game stayed closed, so it looked like a crash on restart.\n\nWhat changed\n- The Apply script now starts detached (survives Manafall closing)\n- Auto-Apply is off by default — download finishes, then click Apply when you want to restart\n- If Apply still fails, Manafall is relaunched and Manafall-patch-failed.txt is written on the Desktop\n\nThis is a small script Apply.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790177758
+    "publishedAt":  1790178911
 }
