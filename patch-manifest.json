@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.24",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.24/manafall-0.1.24-win64.zip",
+    "version":  "0.1.25",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.25/manafall-0.1.25-win64.zip",
     "url2":  "",
     "url3":  "",
-    "sha256":  "aa60b9ecfb670131b92f89c584a2ec7abcfd78e595bd2641d26b7b8955ae198c",
-    "notes":  "Patch 0.1.24\n\nFixes the update download bar: it was hiding while GitHub reported 0%, so it looked stuck on \"Downloading\" with nothing moving.\n\n- Progress bar stays visible (pulse while size is unknown)\n- Status shows MB downloaded\n- Cancel button during download\n- Clear error if the download stalls or the drive is too full for a large update\n\nThis is a small script Apply. Ore rock materials from 0.1.23 still need a content Apply after this — they will be offered again once this lands.",
+    "sha256":  "71f477ce750dae3ff17bd10a22052da89e0f86172d9b41dee701d401db422988",
+    "notes":  "Patch 0.1.25\n\nFix: update Apply no longer leaves Manafall closed when install fails.\n\nWhat went wrong\n- After download, Apply quits the game to unpack the zip\n- With the drive almost full (about 2 GB free), unpack failed\n- The game stayed closed, so it looked like a crash on restart\n\nWhat this does\n- Checks free disk before quitting to Apply\n- If Apply still fails, relaunches Manafall and writes Manafall-patch-failed.txt on the Desktop\n- Shows a short error dialog instead of dying silently\n\nThis is a small script Apply. Free several GB on C: before taking a large content update (ore materials from 0.1.23).",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790176912
+    "publishedAt":  1790177758
 }
