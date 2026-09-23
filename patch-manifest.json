@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.23",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.23/manafall-0.1.23-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.23/manafall-0.1.23-win64.zip.002",
+    "version":  "0.1.24",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.24/manafall-0.1.24-win64.zip",
+    "url2":  "",
     "url3":  "",
-    "sha256":  "284e8ebeb341ca549c087cb1a6fb9fa3a7fc1a9ee8d04679e6834efbed43830c",
-    "notes":  "Patch 0.1.23\n\nOre rocks\n- Copper, iron, gold, and skyiron no longer read as a colored crack web on dark stone.\n- Ore sits in pockets, stains, and flecks on the rock face. Crack ore is dialed down.\n- Distant rock copies use the same ore look as the close mesh.\n\nAlso since 0.1.22\n- Selected hotbar item picture stays in the slot\n- Joining a host no longer leaves you under the island\n- Strike notice with Dispute this link\n- Sun glare blinds when you look into it, clears when you look away\n- Online menu: patch notes lower, Back spaced, rename no longer covers current name\n\nThis Apply ships matched Game data from a fresh build so the stone materials land. Close Manafall before Apply.",
+    "sha256":  "aa60b9ecfb670131b92f89c584a2ec7abcfd78e595bd2641d26b7b8955ae198c",
+    "notes":  "Patch 0.1.24\n\nFixes the update download bar: it was hiding while GitHub reported 0%, so it looked stuck on \"Downloading\" with nothing moving.\n\n- Progress bar stays visible (pulse while size is unknown)\n- Status shows MB downloaded\n- Cancel button during download\n- Clear error if the download stalls or the drive is too full for a large update\n\nThis is a small script Apply. Ore rock materials from 0.1.23 still need a content Apply after this — they will be offered again once this lands.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  false,
-    "publishedAt":  1790175697
+    "publishedAt":  1790176912
 }
