@@ -1,13 +1,13 @@
-{
-    "game": "manafall",
-    "platform": "win64",
-    "version": "0.1.30",
-    "url": "http://10.0.0.144:8791/manafall-test-0.1.30.zip",
-    "url2": "",
-    "url3": "",
-    "sha256": "56109b5556b590d44d4cfa3546b09cd5c5596af1570bd2323ae7efe1374ec5e4",
-    "notes": "Test patch for a laptop on this same network. It only adds Manafall_Data/StreamingAssets/patch-test.txt. It does not replace the game.",
-    "page": "https://jla1190.github.io/manafall-website/#download",
-    "mandatory": false,
-    "publishedAt": 1790209200
+﻿{
+    "game":  "manafall",
+    "platform":  "win64",
+    "version":  "0.1.31",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.31/manafall-0.1.31-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.31/manafall-0.1.31-win64.zip.002",
+    "url3":  "",
+    "sha256":  "b318fc7cd6d2a20ad96999cc05d575d014d0e5590a542901573861eb5d5ceecf",
+    "notes":  "Manafall 0.1.31 — Windows client\n\nOnline and host\n- Public server list can show your game across networks when the game port answers.\n- Listen host adds Windows Firewall allows for the game port, listing, and LAN beacon.\n- Joining players get terrain under their feet first so the ground loads with them.\n- Join toasts, Tab roster gamertags, hold-key who’s online.\n- Host world save keeps gear, buildings, and chests (name the world from Host when the panel is wired).\n\nAdmin\n- /admin tools, /players, /kick and /ban with reason.\n\nStealth and combat\n- Sneak checks work on bandits, skeletons, zombies, wildlife, and other hunters.\n- Soft red arc on the screen rim shows which way a hit came from.\n\nSettings and desktop\n- Settings dropdowns open and pick again.\n- Put On Desktop\\Manafall.exe — move that starter to your Desktop; no shortcut needed.\n\nPerformance\n- Forest trees past the near ring use impostors; shorter trunk shadows; thinner forest grass.\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.",
+    "page":  "https://jla1190.github.io/manafall-website/#download",
+    "mandatory":  true,
+    "publishedAt":  1790257979
 }
