@@ -1,13 +1,13 @@
 {
-  "game": "manafall",
-  "platform": "win64",
-  "version": "0.1.31",
-  "url": "https://github.com/Jla1190/manafall-website/releases/download/v0.1.31/manafall-0.1.31-win64.zip.001",
-  "url2": "https://github.com/Jla1190/manafall-website/releases/download/v0.1.31/manafall-0.1.31-win64.zip.002",
-  "url3": "https://github.com/Jla1190/manafall-website/releases/download/v0.1.31/manafall-0.1.31-win64.zip.003",
-  "sha256": "b318fc7cd6d2a20ad96999cc05d575d014d0e5590a542901573861eb5d5ceecf",
-  "notes": "Manafall 0.1.31 — Windows client\n\nOnline and host\n- Public server list can show your game across networks when the game port answers.\n- Listen host adds Windows Firewall allows for the game port, listing, and LAN beacon.\n- Joining players get terrain under their feet first so the ground loads with them.\n- Join toasts, Tab roster gamertags, hold-key who’s online.\n- Host world save keeps gear, buildings, and chests (name the world from Host when the panel is wired).\n\nAdmin\n- /admin tools, /players, /kick and /ban with reason.\n\nStealth and combat\n- Sneak checks work on bandits, skeletons, zombies, wildlife, and other hunters.\n- Soft red arc on the screen rim shows which way a hit came from.\n\nSettings and desktop\n- Settings dropdowns open and pick again.\n- Put On Desktop\\Manafall.exe — move that starter to your Desktop; no shortcut needed.\n\nPerformance\n- Forest trees past the near ring use impostors; shorter trunk shadows; thinner forest grass.\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n\nAuto-update downloads three parts. Leave ~4 GB free on your Windows drive.",
-  "page": "https://jla1190.github.io/manafall-website/#download",
-  "mandatory": true,
-  "publishedAt": 1790261604
+    "game":  "manafall",
+    "platform":  "win64",
+    "version":  "0.1.32",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.003",
+    "sha256":  "d6665c6f138a45ea1aa5f4a9997b55d0fb3fa93f48d1858b732c38edbd5f3d46",
+    "notes":  "Manafall 0.1.32 - Windows client\n\nOnline and host\n- Online -\u003e Host opens server options (name, player limit, password, public list) instead of bouncing to the main menu.\n- Host and clients share the same day/night clock.\n- Public server list works when the game port answers (NAT / port 7777 on many networks).\n\nClient play\n- Harvest, hit markers, and loot feel more reliable on clients.\n- Disconnect -\u003e main menu -\u003e rehost should clean up more cleanly.\n\nSky and calendar\n- Gradual dusk colors; visible sun, moon, and stars; occasional northern lights.\n- Calendar year 117, 13 old Roman months, Latin weekdays.\n- Hills can shade trees and rocks from the sun.\n\nFire\n- Building fire spread respects rain soak.\n- Fire spells can ignite wood (roughly 8-92% chance by spell).\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n- Auto-update downloads three parts. Leave ~4 GB free on your Windows drive.",
+    "page":  "https://jla1190.github.io/manafall-website/#download",
+    "mandatory":  true,
+    "publishedAt":  1790269056
 }
