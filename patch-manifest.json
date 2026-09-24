@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.32",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.32/manafall-0.1.32-win64.zip.003",
-    "sha256":  "d6665c6f138a45ea1aa5f4a9997b55d0fb3fa93f48d1858b732c38edbd5f3d46",
-    "notes":  "Manafall 0.1.32 - Windows client\n\nOnline and host\n- Online -\u003e Host opens server options (name, player limit, password, public list) instead of bouncing to the main menu.\n- Host and clients share the same day/night clock.\n- Public server list works when the game port answers (NAT / port 7777 on many networks).\n\nClient play\n- Harvest, hit markers, and loot feel more reliable on clients.\n- Disconnect -\u003e main menu -\u003e rehost should clean up more cleanly.\n\nSky and calendar\n- Gradual dusk colors; visible sun, moon, and stars; occasional northern lights.\n- Calendar year 117, 13 old Roman months, Latin weekdays.\n- Hills can shade trees and rocks from the sun.\n\nFire\n- Building fire spread respects rain soak.\n- Fire spells can ignite wood (roughly 8-92% chance by spell).\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n- Auto-update downloads three parts. Leave ~4 GB free on your Windows drive.",
+    "version":  "0.1.33",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.33/manafall-0.1.33-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.33/manafall-0.1.33-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.33/manafall-0.1.33-win64.zip.003",
+    "sha256":  "38221eaebd9083b93c19d0da2e7dd5ef68b328e3c56292ab5a9575bd962e47e9",
+    "notes":  "Manafall 0.1.33 - Windows client\n\nWhat\u0027s new in 0.1.33\n- Koosh plants are a normal bush size again. Aim at one and press F to harvest a Koosh Cap.\n- Online -\u003e Host: the middle field shows Max players next to the number (not a bare unlabeled value).\n- Crystals now scatter in the world like stones, about half as often. Snow biomes have a bit more (~20%).\n- Building fire: rain soaks fires over time (with a short grace after ignition) so storm fires don\u0027t die instantly; fire spells can ignite wood buildings (chance scales with fire damage). Debug: F6 clear weather, F7 extinguish, F8 ignite nearest wood.\n\nStill true from recent patches\n- Online -\u003e Host opens server options instead of bouncing to the main menu.\n- Harvest, hit markers, and loot feel more reliable on clients.\n- Host and clients share the same day/night clock.\n- Gradual dusk colors; visible sun, moon, and stars; occasional northern lights.\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n- Auto-update downloads three parts. Leave ~4 GB free on your Windows drive.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790269056
+    "publishedAt":  1790277720
 }
