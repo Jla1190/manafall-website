@@ -2,6 +2,8 @@ window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
   downloadUrl: "https://mega.nz/file/Hd8n3LKb#mvqzUMhjnnLmVwXAzZe67t3_5taRKgEF-L1IWXPRuOc",
   downloadLabel: "Download for Windows",
+  androidDownloadUrl: "https://mega.nz/file/3AtGkZrR#EyCmIQCvSd_o0PmHSWHDCClMvIz9f2OYRTQZaQP8HGU",
+  androidDownloadLabel: "Download for Android",
   creatorName: "Jean-Luc Alexander",
   discordUrl: "https://discord.gg/CH8GjWaDnx",
   itchUrl: "https://orangejuice90.itch.io/manafall",

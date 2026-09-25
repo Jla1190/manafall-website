@@ -51,6 +51,24 @@
     }
   }
 
+  const androidBtn = document.getElementById('androidDownloadBtn');
+  const androidLabel = document.getElementById('androidDownloadLabel');
+  const androidNote = document.getElementById('androidDownloadNote');
+  if (cfg.androidDownloadUrl) {
+    if (androidBtn) {
+      androidBtn.href = cfg.androidDownloadUrl;
+      androidBtn.removeAttribute('aria-disabled');
+      androidBtn.target = '_blank';
+      androidBtn.rel = 'noopener noreferrer';
+    }
+    if (androidLabel && cfg.androidDownloadLabel) androidLabel.textContent = cfg.androidDownloadLabel;
+    if (androidNote) {
+      androidNote.textContent = 'Android APK - sideload (allow Unknown apps). Join via Server Browser on same LAN/VPN.';
+      androidNote.classList.add('ready');
+    }
+  }
+
+
 
   const discordBtn = document.getElementById('discordBtn');
   const discordTop = document.getElementById('discordBtnTop');
