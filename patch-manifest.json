@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.35",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.35/manafall-0.1.35-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.35/manafall-0.1.35-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.35/manafall-0.1.35-win64.zip.003",
-    "sha256":  "df556ede92d7763ea3ced6c4b4e96c6c12f317f9fdf791cb4e7378d3ef15252e",
-    "notes":  "Manafall 0.1.35 - Windows client\n\nWhat\u0027s new in 0.1.35\n- Windows desktop: phone touch overlay (Use/Run/Jump/Atk/Duck + sticks) no longer appears on the main menu / Offline panel. Touch controls only show in-game on Android (or Editor phone preview).\n- Patch installer: fixed \"Could not start the patch installer\" — apply now launches via a detached ApplyPendingPatch-Now.cmd (with powershell/cmd fallbacks) so Quit cannot kill the installer. Desktop Manafall.exe starter is restored on apply.\n- Same-version republish preference: newer publishedAt / sha wins when versions tie.\n\nStill true from 0.1.34\n- Load Save labels: middle-dot separator no longer shows mojibake on Windows.\n- Offline sky / weather cloud and night starfield improvements.\n- Cold vs food authority fix; fire douse NRE cleanup; LOD spam silenced.\n- Phone/touch UI + mobile performance budget layers for Android builds.",
+    "version":  "0.1.36",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.003",
+    "sha256":  "3922eeef107b03e8d293e3b66649618aeec335fdc2177daa859d47e040361dce",
+    "notes":  "Manafall 0.1.36 - Windows client\n\nWhat\u0027s new in 0.1.36\n- Host / Join / Server / AutoJoin now activate the deferred NetworkManager before starting Mirror (fixes Host button no-op when NetworkManager.singleton was null on Menu Scene).\n- Menu UI unsquash (PR #33): match monitor pixels / 1920x1080 scaler so ultrawide no longer stretches a 4:3 buffer; Play Offline gets a real raycast hit target; release menu night blackout so play view stays readable.\n\nStill true from 0.1.35\n- Windows desktop: phone touch overlay no longer appears on the main menu / Offline panel.\n- Patch installer: ApplyPendingPatch-Now.cmd launch path so Quit cannot kill the installer; Desktop Manafall.exe starter restored on apply.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790628229
+    "publishedAt":  1790632189
 }
