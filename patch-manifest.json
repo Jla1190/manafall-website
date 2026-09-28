@@ -2,12 +2,12 @@
     "game":  "manafall",
     "platform":  "win64",
     "version":  "0.1.34",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34/manafall-0.1.34-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34/manafall-0.1.34-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34/manafall-0.1.34-win64.zip.003",
-    "sha256":  "a1259f3be8d3d1a110c7b5a1d4d20352274b4b33afbb3ce157e3a4d48c7d56a0",
-    "notes":  "Manafall 0.1.34 - Windows client\n\nWhat\u0027s new in 0.1.34\n- Load Save labels: middle-dot separator no longer shows mojibake on Windows.\n- Offline sky: volumetric / weather clouds and night starfield improvements (less empty grey / magenta).\n- Cold no longer drains Health while Food is still high (cold vs food authority fix).\n- Fire douse / ocean relay: Host Offline NullReferenceException spam cleaned up.\n- LOD: disabled LODGroup SetLODs spam silenced.\n- Class picker DETAILS layout, tree harvest polish, stamina HUD tweaks.\n- Phone/touch UI + mobile performance budget layers kept for Android builds.\n- Android player forced to landscape (portrait autorotate off).\n\nStill true from recent patches\n- Online -\u003e Host opens server options instead of bouncing to the main menu.\n- Harvest, hit markers, and loot feel more reliable on clients.\n- Host and clients share the same day/night clock.\n- Gradual dusk colors; visible sun, moon, and stars; occasional northern lights.\n- Koosh plants are harvestable (F); crystals scatter in the world; building fire reacts to rain.\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n- Auto-update downloads three parts. Leave ~4 GB free on your Windows drive.",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34-r2/manafall-0.1.34-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34-r2/manafall-0.1.34-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.34-r2/manafall-0.1.34-win64.zip.003",
+    "sha256":  "af76646e5ce354fe594043bd09a0df09f71a99635c7e550a52a587ff20b687ab",
+    "notes":  "Manafall 0.1.34 - Windows client (R2)\n\nWhat\u0027s new in 0.1.34\n- Load Save labels: middle-dot separator no longer shows mojibake on Windows.\n- Offline sky: volumetric / weather clouds and night starfield improvements (less empty grey / magenta).\n- Cold no longer drains Health while Food is still high (cold vs food authority fix).\n- Fire douse / ocean relay: Host Offline NullReferenceException spam cleaned up.\n- LOD: disabled LODGroup SetLODs spam silenced.\n- Class picker DETAILS layout, tree harvest polish, stamina HUD tweaks.\n- Phone/touch UI + mobile performance budget layers kept for Android builds.\n- Android player forced to landscape (portrait autorotate off).\n\nStill true from recent patches\n- Online -\u003e Host opens server options instead of bouncing to the main menu.\n- Harvest, hit markers, and loot feel more reliable on clients.\n- Host and clients share the same day/night clock.\n- Gradual dusk colors; visible sun, moon, and stars; occasional northern lights.\n- Koosh plants are harvestable (F); crystals scatter in the world; building fire reacts to rain.\n\nPatcher\n- Keeps a partial download; only installs a full matching client zip.\n- Auto-update downloads three parts. Leave ~4 GB free on your Windows drive.\n- R2: republished clean multipart + manifest (fixes ship path that pushed website to wrong git remote).",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790606580
+    "publishedAt":  1790621936
 }
