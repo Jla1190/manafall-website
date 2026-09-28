@@ -2,7 +2,7 @@ window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
   downloadUrl: "https://mega.nz/file/Hd8n3LKb#mvqzUMhjnnLmVwXAzZe67t3_5taRKgEF-L1IWXPRuOc",
   downloadLabel: "Download for Windows",
-  androidDownloadUrl: "https://mega.nz/file/7JFWBCbA#hFQigSfQN6P2WNaYBQcMW8OXDxmFZjJXO4dW5HTFJ20",
+  androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
   creatorName: "Jean-Luc Alexander",
   discordUrl: "https://discord.gg/CH8GjWaDnx",
