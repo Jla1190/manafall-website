@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.36",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.36/manafall-0.1.36-win64.zip.003",
-    "sha256":  "3922eeef107b03e8d293e3b66649618aeec335fdc2177daa859d47e040361dce",
-    "notes":  "Manafall 0.1.36 - Windows client\n\nWhat\u0027s new in 0.1.36\n- Host / Join / Server / AutoJoin now activate the deferred NetworkManager before starting Mirror (fixes Host button no-op when NetworkManager.singleton was null on Menu Scene).\n- Menu UI unsquash (PR #33): match monitor pixels / 1920x1080 scaler so ultrawide no longer stretches a 4:3 buffer; Play Offline gets a real raycast hit target; release menu night blackout so play view stays readable.\n\nStill true from 0.1.35\n- Windows desktop: phone touch overlay no longer appears on the main menu / Offline panel.\n- Patch installer: ApplyPendingPatch-Now.cmd launch path so Quit cannot kill the installer; Desktop Manafall.exe starter restored on apply.",
+    "version":  "0.1.37",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.003",
+    "sha256":  "e08c550ffc0785949f5910cc2d193e1d4488df7e781d560272f2c34e3a4c434c",
+    "notes":  "0.1.37 — Windows exe icon restored (standing-stone Manafall mark). Host EnsureActive + PR #33 menu/layout fixes from 0.1.36 kept. Android download button unchanged.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790632189
+    "publishedAt":  1790635009
 }
