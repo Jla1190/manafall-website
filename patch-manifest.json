@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.37",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.37/manafall-0.1.37-win64.zip.003",
-    "sha256":  "e08c550ffc0785949f5910cc2d193e1d4488df7e781d560272f2c34e3a4c434c",
+    "version":  "0.1.38",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.38/manafall-0.1.38-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.38/manafall-0.1.38-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.38/manafall-0.1.38-win64.zip.003",
+    "sha256":  "c6570fa8166711ad05162aac6ae73799914bc9d1e2298200b120533c3cc7e11e",
     "notes":  "0.1.37 — Windows exe icon restored (standing-stone Manafall mark). Host EnsureActive + PR #33 menu/layout fixes from 0.1.36 kept. Android download button unchanged.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790635009
+    "publishedAt":  1790644167
 }
