@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.39",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.39/manafall-0.1.39-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.39/manafall-0.1.39-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.39/manafall-0.1.39-win64.zip.003",
-    "sha256":  "f21b56e77aea26b195f8d57d410f705be28d4ea4399d2b168e157deb2a5ebcfd",
-    "notes":  "Manafall 0.1.39 — Playtest Clerk\n\n- Ruin loot groups: crates and breakable vases scatter near ruin anchors across the island (placeholder meshes until FBX at Assets/GameObjects/Models/Loot/).\n- Crate survival loot (food, water, metals, cloth/leather, fish, arrows, basic gear). Empty crates wait then despawn (default ~30s); ruin stays.\n- Breakable vase: Press F to smash, or ~6 unskilled punches. Smoke puff + loot bags on the ground. Weapons/blunt skill break it sooner.\n- Host ClassHold / move-look sticky fix after world entry (already-classed Host Offline unlocks).\n- SceneDumpedPlayerCleanup at host start (no dumped-scene camera ghost).\n- Stamina drains roughly halved (sprint/jump/attack/swim/block/overheat + long-term fatigue); regen unchanged.\n- MoveLookScreenDebug kept (F9) for Jean until asked to remove.\n- Preserved: Mobile/Touch, Host EnsureActive, icon stamp, PR #33 menu, #34 clock/load/mushrooms.",
+    "version":  "0.1.40",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.003",
+    "sha256":  "ca3ac3aa619e92213757d15f17ba4482035482e4e93ecbca1367f35ca91023d1",
+    "notes":  "Manafall 0.1.40 — Playtest Clerk\n\n- PR #42 tip c145444: copper stone URP Lit fog (M_Stone_CopperLit) + harvest aim SphereCast to TaggedCollisionHealth (not ground-first miss).\n- PR #41: land stays underfoot — occupied chunk lock, deferred landmark regen, dual MeshCollider retire (no mid-walk fall-through).\n- PR #40: denser ruin loot (~half stone), pillar/crate/vase, one-mesh-per-site cleanup.\n- PR #39: Strongback Tonic carry-weight potion (item 7042).\n- Kept local 2026-09-30 fixes: smoke-offline-slot gate, WinKey desktop access, load-menu delete confirm, terrain border blend / no KickHeight on CreateChunk, mushroom mesh colliders, Mobile/Touch, Host EnsureActive, icon, menu #33/#34, ClassHold/stamina from 0.1.39.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790691222
+    "publishedAt":  1790856156
 }
