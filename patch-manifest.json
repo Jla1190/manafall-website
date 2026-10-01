@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.40",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.40/manafall-0.1.40-win64.zip.003",
-    "sha256":  "ca3ac3aa619e92213757d15f17ba4482035482e4e93ecbca1367f35ca91023d1",
-    "notes":  "Manafall 0.1.40 — Playtest Clerk\n\n- PR #42 tip c145444: copper stone URP Lit fog (M_Stone_CopperLit) + harvest aim SphereCast to TaggedCollisionHealth (not ground-first miss).\n- PR #41: land stays underfoot — occupied chunk lock, deferred landmark regen, dual MeshCollider retire (no mid-walk fall-through).\n- PR #40: denser ruin loot (~half stone), pillar/crate/vase, one-mesh-per-site cleanup.\n- PR #39: Strongback Tonic carry-weight potion (item 7042).\n- Kept local 2026-09-30 fixes: smoke-offline-slot gate, WinKey desktop access, load-menu delete confirm, terrain border blend / no KickHeight on CreateChunk, mushroom mesh colliders, Mobile/Touch, Host EnsureActive, icon, menu #33/#34, ClassHold/stamina from 0.1.39.",
+    "version":  "0.1.41",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.41/manafall-0.1.41-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.41/manafall-0.1.41-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.41/manafall-0.1.41-win64.zip.003",
+    "sha256":  "f7567b8c8c0875d6c148fd2cd0688b1948e4e8cefbe5860fc8e7c53e458a64f0",
+    "notes":  "Manafall 0.1.41 - Playtest Clerk\n\n- PR #43 tip 4fdf6bd: amortize RuinLootGroupWorldSpawner so Host Offline stays playable (spread planning/spawns across frames, clone small ruin template, cache WorldGenerator, ray ground seat). Density/site contents unchanged from half-stone ruin loot.\n- Keeps 0.1.40 tree: PR #42 copper tip c145444, PR #41 land underfoot, PR #40 ruin loot, PR #39 Strongback, menu/WinKey/delete-save/cliffs/mushrooms, Mobile/Touch, EnsureActive, icon, ClassHold/stamina.",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790856156
+    "publishedAt":  1790867480
 }
