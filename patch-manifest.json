@@ -1,13 +1,13 @@
 {
     "game":  "manafall",
     "platform":  "win64",
-    "version":  "0.1.42",
-    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.42/manafall-0.1.42-win64.zip.001",
-    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.42/manafall-0.1.42-win64.zip.002",
-    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.42/manafall-0.1.42-win64.zip.003",
-    "sha256":  "9c4fe193bf13a2184c4bc30c7d79d258038dd90fb5ed51322aae4be9c73688b0",
-    "notes":  "Manafall 0.1.42\r\n\r\n- Host Offline: keep grainy volumetric cloud deck after spawn (fold Origin PR #45).\r\n- Menu unload / player camera handoff no longer clears weather globals or skips the volume composite.\r\n- Keeps today\u0027s local fixes (loot close, attack charge hold, WinKey, placement, CreateChunk mem, ice wolf, terrain, ruin pillar).",
+    "version":  "0.1.43",
+    "url":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.43/manafall-0.1.43-win64.zip.001",
+    "url2":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.43/manafall-0.1.43-win64.zip.002",
+    "url3":  "https://github.com/Jla1190/manafall-website/releases/download/v0.1.43/manafall-0.1.43-win64.zip.003",
+    "sha256":  "0b2c7f3b0419d359f54ec9ffa27c760e4d084fb73fbb499b32b8b3271879d8f6",
+    "notes":  "Manafall 0.1.43\r\n\r\n- Reseat ruin loot when nearby terrain regenerates (fold Origin PR #46).\r\n- Remove invisible wall around Host Offline spawn / Galbesh pad blockers (fold Origin PR #47).\r\n- Keep post-0.1.42 Host Offline sky/clouds fix (menu weather handoff + sheet thin only when pass Recorded + deck floor).\r\n- Keeps local WIP (loot close, attack charge hold, WinKey, placement, CreateChunk mem, ice wolf, terrain, ruin pillar).",
     "page":  "https://jla1190.github.io/manafall-website/#download",
     "mandatory":  true,
-    "publishedAt":  1790889964
+    "publishedAt":  1790952819
 }
