@@ -1,7 +1,7 @@
 window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
-  downloadUrl: "https://mega.nz/file/Hd8n3LKb#mvqzUMhjnnLmVwXAzZe67t3_5taRKgEF-L1IWXPRuOc",
-  downloadLabel: "Download for Windows",
+  downloadUrl: "https://github.com/Jla1190/manafall-website/releases/tag/v0.1.43",
+  downloadLabel: "Download for Windows (v0.1.43)",
   androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
   creatorName: "Jean-Luc Alexander",

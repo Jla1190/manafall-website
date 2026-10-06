@@ -46,7 +46,7 @@
     });
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
-      dlNote.textContent = 'Windows build - large download. Thanks for playing Manafall.';
+      dlNote.textContent = 'Opens the current Windows release page on GitHub. Thanks for playing Manafall.';
       dlNote.classList.add('ready');
     }
   }
