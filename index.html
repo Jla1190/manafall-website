@@ -154,6 +154,10 @@
         <a class="btn primary wide" id="downloadBtn" href="#" aria-disabled="true">
           <span id="downloadLabel">Download for Windows</span>
         </a>
+        <a class="btn primary wide" id="installBtn" href="files/Install-Manafall.cmd" style="margin-top:0.75rem" download>
+          <span id="installLabel">Install to C:\Manafall\Game (puts Manafall.exe there)</span>
+        </a>
+        <p class="note ready" id="installNote">If <code>C:\Manafall</code> has no exe: download this installer, run it, leave the window open. It creates <code>C:\Manafall\Game\Manafall.exe</code> and a Desktop starter.</p>
         <a class="btn primary wide" id="androidDownloadBtn" href="#" aria-disabled="true" style="margin-top:0.75rem">
           <span id="androidDownloadLabel">Download for Android</span>
         </a>
@@ -180,7 +184,7 @@
         <p class="note ready" id="playtestPatchNote">Newest Unity source patch from cloud-agent PR #76 — filament water caustics, main-menu version label (v0.1.44), hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see apply notes). Not a Windows game zip — rebuild in Unity after apply.</p>
         <p class="note" id="itchNote">Official itch.io page - follows, comments, and the same game listing.</p>
         <ul class="checklist">
-          <li>Direct single zip from the creator (Mega)</li>
+          <li>Direct single zip from the creator (Mega), or run the Installer for <code>C:\Manafall\Game</code></li>
           <li>Also listed on itch.io</li>
           <li>No bundled adware</li>
           <li>Open the game after unzip — auto-patch updates you</li>

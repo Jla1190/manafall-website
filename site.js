@@ -54,6 +54,17 @@
     }
   }
 
+
+  const installBtn = document.getElementById('installBtn');
+  const installLabel = document.getElementById('installLabel');
+  const installNote = document.getElementById('installNote');
+  if (cfg.installUrl && installBtn) {
+    installBtn.href = cfg.installUrl;
+    installBtn.setAttribute('download', '');
+    if (installLabel && cfg.installLabel) installLabel.textContent = cfg.installLabel;
+    if (installNote) installNote.classList.add('ready');
+  }
+
   const androidBtn = document.getElementById('androidDownloadBtn');
   const androidLabel = document.getElementById('androidDownloadLabel');
   const androidNote = document.getElementById('androidDownloadNote');

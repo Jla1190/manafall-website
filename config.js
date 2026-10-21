@@ -3,6 +3,8 @@ window.MANAFALL_SITE = {
   // Single unzippable Windows zip (Mega). In-game auto-patch still pulls 0.1.43 from patch-manifest.json.
   downloadUrl: "https://mega.nz/file/Hd8n3LKb#mvqzUMhjnnLmVwXAzZe67t3_5taRKgEF-L1IWXPRuOc",
   downloadLabel: "Download for Windows",
+  installUrl: "files/Install-Manafall.cmd",
+  installLabel: "Install to C:\\Manafall\\Game (puts Manafall.exe there)",
   androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
   // Latest cloud-agent playtest source patch (caustics, Nightling, Druclad, loot tiers, …).
