@@ -2,10 +2,10 @@ window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
   // Mega single-zip link died ("File cannot be accessed"). Primary download is the installer
   // that pulls the live GitHub multipart build into C:\Manafall\Game\Manafall.exe.
-  downloadUrl: "files/Install-Manafall.cmd",
-  downloadLabel: "Download for Windows",
-  installUrl: "files/Install-Manafall.cmd",
-  installLabel: "Install to C:\\Manafall\\Game (puts Manafall.exe there)",
+  downloadUrl: "files/Install-Manafall.zip",
+  downloadLabel: "Download for Windows (installer zip)",
+  installUrl: "files/Install-Manafall.zip",
+  installLabel: "Install to C:\\Manafall\\Game (unzip, run Install-Manafall.cmd)",
   androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
   // Latest cloud-agent playtest source patch (caustics, Nightling, Druclad, loot tiers, …).
