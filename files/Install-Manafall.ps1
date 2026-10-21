@@ -179,7 +179,18 @@ try {
     $free = (New-Object IO.DriveInfo $drive).AvailableFreeSpace
     Log ('Free on {0} = {1:N1} GB' -f $drive, ($free / 1GB))
     if ($free -lt 4GB) {
-        throw ('Need about 4 GB free on {0}. Free space, then run again.' -f $drive)
+        Log 'Low disk space - cleaning Manafall temp leftovers first...'
+        foreach ($pat in @('ManafallInstall-*', 'ManafallPatch-*', 'ManafallUpdate_*', 'manafall-update-*.zip', 'manafall-patch-*.zip')) {
+            Get-ChildItem -LiteralPath $env:TEMP -Filter $pat -Force -ErrorAction SilentlyContinue | ForEach-Object {
+                Log ('  remove {0}' -f $_.FullName)
+                Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
+            }
+        }
+        $free = (New-Object IO.DriveInfo $drive).AvailableFreeSpace
+        Log ('Free on {0} after cleanup = {1:N1} GB' -f $drive, ($free / 1GB))
+    }
+    if ($free -lt 4GB) {
+        throw ('Need about 4 GB free on {0} (have {1:N1} GB). Run Clear-Space-For-Manafall.cmd, empty Recycle Bin, or install to another drive: powershell -File Install-Manafall.ps1 -InstallDir D:\Manafall\Game' -f $drive, ($free / 1GB))
     }
 
     $source = Find-UnpackedSource

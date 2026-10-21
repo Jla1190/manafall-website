@@ -6,6 +6,8 @@ window.MANAFALL_SITE = {
   downloadLabel: "Download for Windows (installer zip)",
   installUrl: "files/Install-Manafall.zip",
   installLabel: "Install to C:\\Manafall\\Game (unzip, run Install-Manafall.cmd)",
+  clearSpaceUrl: "files/Clear-Space-For-Manafall.zip",
+  clearSpaceLabel: "Clear space on C: (run before install if disk full)",
   androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
   // Latest cloud-agent playtest source patch (caustics, Nightling, Druclad, loot tiers, …).

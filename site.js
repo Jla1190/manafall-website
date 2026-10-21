@@ -57,7 +57,7 @@
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
       dlNote.textContent =
-        'Downloads Install-Manafall.zip — unzip, run Install-Manafall.cmd (keep the .ps1 beside it). Installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB).';
+        'Downloads Install-Manafall.cmd — run it and leave the window open. It installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB). The old Mega zip link is dead.';
       dlNote.classList.add('ready');
     }
   }
@@ -71,6 +71,16 @@
     installBtn.setAttribute('download', '');
     if (installLabel && cfg.installLabel) installLabel.textContent = cfg.installLabel;
     if (installNote) installNote.classList.add('ready');
+  }
+
+  const clearSpaceBtn = document.getElementById('clearSpaceBtn');
+  const clearSpaceLabel = document.getElementById('clearSpaceLabel');
+  const clearSpaceNote = document.getElementById('clearSpaceNote');
+  if (cfg.clearSpaceUrl && clearSpaceBtn) {
+    clearSpaceBtn.href = cfg.clearSpaceUrl;
+    clearSpaceBtn.setAttribute('download', '');
+    if (clearSpaceLabel && cfg.clearSpaceLabel) clearSpaceLabel.textContent = cfg.clearSpaceLabel;
+    if (clearSpaceNote) clearSpaceNote.classList.add('ready');
   }
 
   const androidBtn = document.getElementById('androidDownloadBtn');
