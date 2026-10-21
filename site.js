@@ -74,8 +74,10 @@
 
   const playtestPatchBtn = document.getElementById('playtestPatchBtn');
   const playtestPatchCodeBtn = document.getElementById('playtestPatchCodeBtn');
+  const playtestPatchHideDebugBtn = document.getElementById('playtestPatchHideDebugBtn');
   const playtestPatchLabel = document.getElementById('playtestPatchLabel');
   const playtestPatchCodeLabel = document.getElementById('playtestPatchCodeLabel');
+  const playtestPatchHideDebugLabel = document.getElementById('playtestPatchHideDebugLabel');
   const playtestPatchNote = document.getElementById('playtestPatchNote');
   if (cfg.playtestPatchUrl && playtestPatchBtn) {
     playtestPatchBtn.href = cfg.playtestPatchUrl;
@@ -91,12 +93,19 @@
       playtestPatchCodeLabel.textContent = cfg.playtestPatchCodeLabel;
     }
   }
+  if (cfg.playtestPatchHideDebugUrl && playtestPatchHideDebugBtn) {
+    playtestPatchHideDebugBtn.href = cfg.playtestPatchHideDebugUrl;
+    playtestPatchHideDebugBtn.setAttribute('download', '');
+    if (playtestPatchHideDebugLabel && cfg.playtestPatchHideDebugLabel) {
+      playtestPatchHideDebugLabel.textContent = cfg.playtestPatchHideDebugLabel;
+    }
+  }
   if (playtestPatchNote && cfg.playtestBranchUrl) {
     playtestPatchNote.innerHTML =
       'Newest Unity source patch from <a href="' + cfg.playtestBranchUrl +
-      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
+      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
       (cfg.playtestPatchNotesUrl || 'files/manafall_cloud_agent_full_apply.txt') +
-      '">apply notes</a>). Not a Windows game zip.';
+      '">apply notes</a>). Not a Windows game zip — rebuild in Unity after apply.';
   }
 
   const discordBtn = document.getElementById('discordBtn');

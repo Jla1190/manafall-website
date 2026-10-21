@@ -1,58 +1,17 @@
-Manafall cloud-agent branch — full patch (all new stuff vs main)
-================================================================
+Manafall cloud-agent playtest source patch
+==========================================
+Apply onto a clean checkout of main:
 
-Source branch: cursor/cloud-agent-1792461972053-1rj31
-Base:          origin/main
-PR:            https://cursor.com/codebase/jla90/manafall/pull/76
-
-Website download (after site deploy)
-------------------------------------
-  https://jla1190.github.io/manafall-website/files/manafall_cloud_agent_full.patch
-  https://jla1190.github.io/manafall-website/files/manafall_cloud_agent_code.patch
-  https://jla1190.github.io/manafall-website/files/manafall_cloud_agent_full_apply.txt
-
-Also mirrored in this repo:
-  Docs/Playtest/manafall_cloud_agent_full.patch   (~31MB, includes binaries)
-  Docs/Playtest/manafall_cloud_agent_code.patch   (~821KB, code/text only)
-
-What is in the full patch (high level)
---------------------------------------
-  • Water: open filament caustics (Rev 6), surface micro-waves / chop / glints
-    share the same field; shore pass reimport; livelier caustic clock
-  • Nightling: rarer spawns, charge contact damage, easier corpse loot,
-    Dusk-Fee Token signature rare
-  • Loot: MarketItemRarity tiers drive weighted rolls game-wide
-  • Druclad: void-island fire boss kit, body fire VFX, hurtboxes, Mixamo assets
-  • Diseases: twelve mundane diseases, swamp weighting, cures, healer rites
-  • Stars / sky: softer night star discs
-  • Void floating-island / foliage scratch extracts
-  • Open-water swim / rowing stamina tune
-  • Related ScriptableObjects, materials, ThirdParty downloads
-
-Apply (full, including binaries)
---------------------------------
-  git fetch origin main
-  git checkout -B apply-cloud-agent origin/main
   git apply --check Docs/Playtest/manafall_cloud_agent_full.patch
   git apply Docs/Playtest/manafall_cloud_agent_full.patch
 
-Or merge the PR branch:
+Or use the code-only patch (smaller, skips most binary assets):
 
-  git fetch origin cursor/cloud-agent-1792461972053-1rj31
-  git merge origin/cursor/cloud-agent-1792461972053-1rj31
-
-Apply (code-only)
------------------
-  git apply --check Docs/Playtest/manafall_cloud_agent_code.patch
   git apply Docs/Playtest/manafall_cloud_agent_code.patch
 
-After apply in Unity
---------------------
-  1. Let Unity reimport (or Assets → Reimport All if pink shaders).
-  2. Reimport Assets/Shaders/ManafallShoreCaustics.shader if caustics look stale.
-  3. PC quality: enableShoreCaustics on for bed filaments.
+Debug-overlays-only (tiny):
 
-Windows game zip
-----------------
-  Player builds stay on GitHub Releases v0.1.43 (unchanged by this source patch):
-  https://github.com/Jla1190/manafall-website/releases/tag/v0.1.43
+  git apply Docs/Playtest/manafall_hide_debug_overlays.patch
+
+Includes: filament water caustics, hide sticky F3/F4 debug overlays in player builds,
+and other PR #76 work. Not a Windows game zip — rebuild the client in Unity after apply.

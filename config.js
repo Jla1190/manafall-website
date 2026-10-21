@@ -10,6 +10,8 @@ window.MANAFALL_SITE = {
   playtestPatchLabel: "Download playtest source patch (full)",
   playtestPatchCodeUrl: "files/manafall_cloud_agent_code.patch",
   playtestPatchCodeLabel: "Download playtest source patch (code only)",
+  playtestPatchHideDebugUrl: "files/manafall_hide_debug_overlays.patch",
+  playtestPatchHideDebugLabel: "Download patch: hide debug overlays only",
   playtestPatchNotesUrl: "files/manafall_cloud_agent_full_apply.txt",
   playtestBranchUrl: "https://cursor.com/codebase/jla90/manafall/pull/76",
   creatorName: "Jean-Luc Alexander",
