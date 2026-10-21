@@ -1,7 +1,8 @@
 window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
-  // Single unzippable Windows zip (Mega). In-game auto-patch still pulls 0.1.43 from patch-manifest.json.
-  downloadUrl: "https://mega.nz/file/Hd8n3LKb#mvqzUMhjnnLmVwXAzZe67t3_5taRKgEF-L1IWXPRuOc",
+  // Mega single-zip link died ("File cannot be accessed"). Primary download is the installer
+  // that pulls the live GitHub multipart build into C:\Manafall\Game\Manafall.exe.
+  downloadUrl: "files/Install-Manafall.cmd",
   downloadLabel: "Download for Windows",
   installUrl: "files/Install-Manafall.cmd",
   installLabel: "Install to C:\\Manafall\\Game (puts Manafall.exe there)",

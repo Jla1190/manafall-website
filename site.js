@@ -39,17 +39,25 @@
   const downloadLabel = document.getElementById('downloadLabel');
 
   if (cfg.downloadUrl) {
+    const isLocalFile = /^files\//i.test(cfg.downloadUrl) || !/^https?:\/\//i.test(cfg.downloadUrl);
     [downloadBtn, downloadTop].forEach((btn) => {
       if (!btn) return;
       btn.href = cfg.downloadUrl;
-      btn.target = '_blank';
-      btn.rel = 'noopener noreferrer';
+      if (isLocalFile) {
+        btn.setAttribute('download', '');
+        btn.removeAttribute('target');
+        btn.removeAttribute('rel');
+      } else {
+        btn.target = '_blank';
+        btn.rel = 'noopener noreferrer';
+        btn.removeAttribute('download');
+      }
       btn.removeAttribute('aria-disabled');
     });
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
       dlNote.textContent =
-        'Single Windows zip on Mega — download, unzip, then open Manafall. The in-game auto-patch updates you to the latest build. Thanks for playing Manafall.';
+        'Downloads Install-Manafall.cmd — run it and leave the window open. It installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB). The old Mega zip link is dead.';
       dlNote.classList.add('ready');
     }
   }
