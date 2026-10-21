@@ -1,0 +1,225 @@
+diff --git a/Assets/Scripts/Debug/ManafallDisableMirrorImgui.cs b/Assets/Scripts/Debug/ManafallDisableMirrorImgui.cs
+index ef2c2ddf4..9e4df0a66 100644
+--- a/Assets/Scripts/Debug/ManafallDisableMirrorImgui.cs
++++ b/Assets/Scripts/Debug/ManafallDisableMirrorImgui.cs
+@@ -4,12 +4,16 @@ using UnityEngine;
+ /// <summary>
+ /// Disables Mirror IMGUI HUDs that allocate tens of KB every frame via OnGUI.
+ /// CLERK: also re-assert after a short delay — NetworkManager can re-enable showGUI on play.
++/// Clears sticky F3/F4 debug overlay prefs once so player/probe builds start without screen clutter.
+ /// </summary>
+ public static class ManafallDisableMirrorImgui
+ {
++    private const string DebugOverlaysHiddenPrefsKey = "Manafall.DebugOverlaysHidden_v1";
++
+     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+     private static void DisableHeavyImgui()
+     {
++        ClearStickyDebugOverlayPrefsOnce();
+         KillMirrorImgui();
+         var go = new GameObject("ClerkMirrorHudKiller");
+         Object.DontDestroyOnLoad(go);
+@@ -17,6 +21,23 @@ public static class ManafallDisableMirrorImgui
+         go.AddComponent<ClerkMirrorHudKiller>();
+     }
+ 
++    /// <summary>
++    /// One-shot for installed players: turn off saved F3/F4 visibility that agents left on.
++    /// Does not run in the Editor (F3 still defaults on there).
++    /// </summary>
++    public static void ClearStickyDebugOverlayPrefsOnce()
++    {
++        if (Application.isEditor)
++            return;
++        if (PlayerPrefs.GetInt(DebugOverlaysHiddenPrefsKey, 0) != 0)
++            return;
++
++        PlayerPrefs.SetInt("Manafall.ViewCostDebug", 0);
++        PlayerPrefs.SetInt("Manafall.MemorySpikeDebug", 0);
++        PlayerPrefs.SetInt(DebugOverlaysHiddenPrefsKey, 1);
++        PlayerPrefs.Save();
++    }
++
+     public static void KillMirrorImgui()
+     {
+         NetworkManagerHUD[] huds = Object.FindObjectsByType<NetworkManagerHUD>(
+diff --git a/Assets/Scripts/ManafallIdentity.cs b/Assets/Scripts/ManafallIdentity.cs
+index e98a248c4..8ef5d873d 100644
+--- a/Assets/Scripts/ManafallIdentity.cs
++++ b/Assets/Scripts/ManafallIdentity.cs
+@@ -5,7 +5,7 @@
+ public static class ManafallIdentity
+ {
+     public const string ProductName = "Manafall";
+-    public const string Version = "0.1.43";
++    public const string Version = "0.1.44";
+     /// <summary>Unity Player Settings Company Name. Replace with your legal name if a store requires it.</summary>
+     public const string PublisherField = "Independent";
+     public const string BundleId = "com.manafall.manafall";
+diff --git a/Assets/Scripts/Menu/MainMenuDirector.cs b/Assets/Scripts/Menu/MainMenuDirector.cs
+index f55ad4b34..fb824eaeb 100644
+--- a/Assets/Scripts/Menu/MainMenuDirector.cs
++++ b/Assets/Scripts/Menu/MainMenuDirector.cs
+@@ -1218,6 +1218,7 @@ public sealed class MainMenuDirector : MonoBehaviour
+         BuildOptionsPanel(canvasRt);
+         BuildCreditsPanel(canvasRt);
+         BuildOfflineSavesPanel(canvasRt);
++        CreateBuildVersionLabel(canvasRt);
+     }
+ 
+     private void OpenSealclashCardGame()
+@@ -2582,6 +2583,58 @@ public sealed class MainMenuDirector : MonoBehaviour
+             tmp.font = TMP_Settings.defaultFontAsset;
+     }
+ 
++    /// <summary>
++    /// Bottom-left build version so players can tell Mega / Probe / patched installs apart.
++    /// Uses <see cref="Application.version"/> (Player Settings), not a hardcoded string.
++    /// </summary>
++    private void CreateBuildVersionLabel(RectTransform canvasRt)
++    {
++        if (canvasRt == null)
++            return;
++
++        Transform existing = canvasRt.Find("BuildVersionLabel");
++        if (existing != null)
++            Destroy(existing.gameObject);
++
++        string appVersion = Application.version;
++        if (string.IsNullOrWhiteSpace(appVersion))
++            appVersion = ManafallIdentity.Version;
++
++        string lastApplied = PlayerPrefs.GetString("Manafall.Patch.LastApplied", string.Empty).Trim();
++        string label = "v" + appVersion.Trim();
++        if (!string.IsNullOrEmpty(lastApplied)
++            && !string.Equals(lastApplied, appVersion.Trim(), System.StringComparison.OrdinalIgnoreCase))
++        {
++            label += "  (patched " + lastApplied + ")";
++        }
++
++#if DEVELOPMENT_BUILD
++        label += "  DEV";
++#endif
++
++        var go = new GameObject("BuildVersionLabel", typeof(RectTransform));
++        go.transform.SetParent(canvasRt, false);
++        RectTransform rt = go.GetComponent<RectTransform>();
++        rt.anchorMin = new Vector2(0f, 0f);
++        rt.anchorMax = new Vector2(0f, 0f);
++        rt.pivot = new Vector2(0f, 0f);
++        rt.anchoredPosition = new Vector2(touchMenu ? 18f : 24f, touchMenu ? 14f : 18f);
++        rt.sizeDelta = new Vector2(touchMenu ? 420f : 520f, touchMenu ? 28f : 26f);
++
++        TextMeshProUGUI tmp = go.AddComponent<TextMeshProUGUI>();
++        tmp.text = label;
++        tmp.fontSize = touchMenu ? 18f : 16f;
++        tmp.alignment = TextAlignmentOptions.Left;
++        tmp.color = new Color(1f, 0.96f, 0.86f, 0.72f);
++        tmp.raycastTarget = false;
++        if (TMP_Settings.defaultFontAsset != null)
++            tmp.font = TMP_Settings.defaultFontAsset;
++
++        Debug.Log("[MainMenu] Build version label: " + label
++            + "  identity=" + ManafallIdentity.Version
++            + "  unity=" + Application.unityVersion);
++    }
++
+     private void CreateManafallTitle(RectTransform parent)
+     {
+         Sprite titleSprite = ResolveManafallTitleSprite();
+diff --git a/Assets/Scripts/Rendering/ManafallMemorySpikeDebug.cs b/Assets/Scripts/Rendering/ManafallMemorySpikeDebug.cs
+index 562d318e4..b7c398c12 100644
+--- a/Assets/Scripts/Rendering/ManafallMemorySpikeDebug.cs
++++ b/Assets/Scripts/Rendering/ManafallMemorySpikeDebug.cs
+@@ -332,8 +332,17 @@ public sealed class ManafallMemorySpikeDebug : MonoBehaviour
+ 
+     private void Awake()
+     {
+-        // Default on in player builds too — this is the hitch board now.
+-        visible = PlayerPrefs.GetInt(PrefsKey, 1) != 0;
++        // Default OFF — the hitch board was sticky-on in player/probe builds and filled the screen.
++        // F7 still toggles it. One-shot clear so older installs that saved PrefsKey=1 start clean.
++        const string hideOnceKey = "Manafall.HideWalkHitchOverlay_v1";
++        if (!Application.isEditor && PlayerPrefs.GetInt(hideOnceKey, 0) == 0)
++        {
++            PlayerPrefs.SetInt(PrefsKey, 0);
++            PlayerPrefs.SetInt(hideOnceKey, 1);
++            PlayerPrefs.Save();
++        }
++
++        visible = PlayerPrefs.GetInt(PrefsKey, 0) != 0;
+         BuildLabel();
+         ApplyVisible();
+     }
+@@ -356,8 +365,8 @@ public sealed class ManafallMemorySpikeDebug : MonoBehaviour
+             PlayerPrefs.SetInt(PrefsKey, visible ? 1 : 0);
+             ApplyVisible();
+             UnityEngine.Debug.Log(visible
+-                ? "[WalkHitch] Overlay on (F4). Walk — top rows are ms on hitch frames."
+-                : "[WalkHitch] Overlay off (F4).");
++                ? "[WalkHitch] Overlay on (F7). Walk — top rows are ms on hitch frames."
++                : "[WalkHitch] Overlay off (F7).");
+         }
+ 
+         if (!visible || label == null)
+@@ -456,7 +465,7 @@ public sealed class ManafallMemorySpikeDebug : MonoBehaviour
+         ExpireWindows(Time.unscaledTime);
+ 
+         builder.Length = 0;
+-        builder.Append("WALK HITCHES  (F4 hide)\n");
++        builder.Append("WALK HITCHES  (F7 hide)\n");
+         builder.AppendFormat(
+             "Frame {0:0.0} ms   smooth {1:0.0} ms   FPS {2:0}   hitch≥{3:0} ms\n",
+             frameMs,
+@@ -541,7 +550,7 @@ public sealed class ManafallMemorySpikeDebug : MonoBehaviour
+         int n = FillSortedIndicesByWindowMs();
+         if (n == 0)
+         {
+-            builder.Append("  (no probes yet — keep walking with F4 on)\n");
++            builder.Append("  (no probes yet — keep walking with F7 on)\n");
+         }
+         else
+         {
+@@ -926,7 +935,7 @@ public sealed class ManafallMemorySpikeDebug : MonoBehaviour
+     private static bool WasTogglePressed()
+     {
+         Keyboard kb = Keyboard.current;
+-        return kb != null && kb.f4Key.wasPressedThisFrame;
++        return kb != null && kb.f7Key.wasPressedThisFrame;
+     }
+ 
+     private static string FmtMb(long bytes)
+diff --git a/Assets/Scripts/Rendering/ManafallViewCostDebug.cs b/Assets/Scripts/Rendering/ManafallViewCostDebug.cs
+index 03597f6c2..35ad25ae8 100644
+--- a/Assets/Scripts/Rendering/ManafallViewCostDebug.cs
++++ b/Assets/Scripts/Rendering/ManafallViewCostDebug.cs
+@@ -116,6 +116,16 @@ public sealed class ManafallViewCostDebug : MonoBehaviour
+ 
+     private void Awake()
+     {
++        // Player/probe builds: clear sticky F3 prefs left on from agent smoke runs.
++        // Editor still defaults on; F3 toggles everywhere.
++        const string hideOnceKey = "Manafall.HideViewCostOverlay_v1";
++        if (!Application.isEditor && PlayerPrefs.GetInt(hideOnceKey, 0) == 0)
++        {
++            PlayerPrefs.SetInt(PrefsKey, 0);
++            PlayerPrefs.SetInt(hideOnceKey, 1);
++            PlayerPrefs.Save();
++        }
++
+         visible = PlayerPrefs.GetInt(PrefsKey, Application.isEditor ? 1 : 0) != 0;
+         BuildLabel();
+         ApplyVisible();
+diff --git a/ProjectSettings/ProjectSettings.asset b/ProjectSettings/ProjectSettings.asset
+index df8cc0684..2d2c8a535 100644
+--- a/ProjectSettings/ProjectSettings.asset
++++ b/ProjectSettings/ProjectSettings.asset
+@@ -143,7 +143,7 @@ PlayerSettings:
+   loadStoreDebugModeEnabled: 0
+   visionOSBundleVersion: 1.0
+   tvOSBundleVersion: 1.0
+-  bundleVersion: 0.1.40
++  bundleVersion: 0.1.44
+   preloadedAssets:
+   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+   metroInputSource: 0

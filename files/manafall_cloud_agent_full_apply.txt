@@ -5,13 +5,15 @@ Apply onto a clean checkout of main:
   git apply --check Docs/Playtest/manafall_cloud_agent_full.patch
   git apply Docs/Playtest/manafall_cloud_agent_full.patch
 
-Or use the code-only patch (smaller, skips most binary assets):
+Or code-only:
 
   git apply Docs/Playtest/manafall_cloud_agent_code.patch
 
-Debug-overlays-only (tiny):
+Smaller topical patches:
 
+  git apply Docs/Playtest/manafall_version_label_and_hide_debug.patch
   git apply Docs/Playtest/manafall_hide_debug_overlays.patch
 
-Includes: filament water caustics, hide sticky F3/F4 debug overlays in player builds,
-and other PR #76 work. Not a Windows game zip — rebuild the client in Unity after apply.
+After apply, rebuild the Windows client in Unity. Main menu bottom-left shows vX.Y.Z
+(Application.version). Current source identity is 0.1.44. In-game auto-patch on the
+website is still 0.1.43 until a new Windows release is published.

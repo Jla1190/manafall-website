@@ -78,6 +78,7 @@
   const playtestPatchLabel = document.getElementById('playtestPatchLabel');
   const playtestPatchCodeLabel = document.getElementById('playtestPatchCodeLabel');
   const playtestPatchHideDebugLabel = document.getElementById('playtestPatchHideDebugLabel');
+  // version patch wired below
   const playtestPatchNote = document.getElementById('playtestPatchNote');
   if (cfg.playtestPatchUrl && playtestPatchBtn) {
     playtestPatchBtn.href = cfg.playtestPatchUrl;
@@ -100,10 +101,19 @@
       playtestPatchHideDebugLabel.textContent = cfg.playtestPatchHideDebugLabel;
     }
   }
+  const playtestPatchVersionBtn = document.getElementById('playtestPatchVersionBtn');
+  const playtestPatchVersionLabel = document.getElementById('playtestPatchVersionLabel');
+  if (cfg.playtestPatchVersionUrl && playtestPatchVersionBtn) {
+    playtestPatchVersionBtn.href = cfg.playtestPatchVersionUrl;
+    playtestPatchVersionBtn.setAttribute('download', '');
+    if (playtestPatchVersionLabel && cfg.playtestPatchVersionLabel) {
+      playtestPatchVersionLabel.textContent = cfg.playtestPatchVersionLabel;
+    }
+  }
   if (playtestPatchNote && cfg.playtestBranchUrl) {
     playtestPatchNote.innerHTML =
       'Newest Unity source patch from <a href="' + cfg.playtestBranchUrl +
-      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
+      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, main-menu version label (v0.1.44), hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
       (cfg.playtestPatchNotesUrl || 'files/manafall_cloud_agent_full_apply.txt') +
       '">apply notes</a>). Not a Windows game zip — rebuild in Unity after apply.';
   }
