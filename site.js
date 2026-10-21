@@ -57,7 +57,7 @@
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
       dlNote.textContent =
-        'Downloads Install-Manafall.cmd — run it and leave the window open. It installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB). The old Mega zip link is dead.';
+        'Downloads Install-Manafall.zip — unzip, run Install-Manafall.cmd (keep the .ps1 beside it). Installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB).';
       dlNote.classList.add('ready');
     }
   }
