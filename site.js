@@ -51,24 +51,32 @@
     }
   }
 
-  const androidBtn = document.getElementById('androidDownloadBtn');
-  const androidLabel = document.getElementById('androidDownloadLabel');
-  const androidNote = document.getElementById('androidDownloadNote');
-  if (cfg.androidDownloadUrl) {
-    if (androidBtn) {
-      androidBtn.href = cfg.androidDownloadUrl;
-      androidBtn.removeAttribute('aria-disabled');
-      androidBtn.target = '_blank';
-      androidBtn.rel = 'noopener noreferrer';
-    }
-    if (androidLabel && cfg.androidDownloadLabel) androidLabel.textContent = cfg.androidDownloadLabel;
-    if (androidNote) {
-      androidNote.textContent = 'Android APK - sideload (allow Unknown apps). Join via Server Browser on same LAN/VPN.';
-      androidNote.classList.add('ready');
+  const playtestPatchBtn = document.getElementById('playtestPatchBtn');
+  const playtestPatchCodeBtn = document.getElementById('playtestPatchCodeBtn');
+  const playtestPatchLabel = document.getElementById('playtestPatchLabel');
+  const playtestPatchCodeLabel = document.getElementById('playtestPatchCodeLabel');
+  const playtestPatchNote = document.getElementById('playtestPatchNote');
+  if (cfg.playtestPatchUrl && playtestPatchBtn) {
+    playtestPatchBtn.href = cfg.playtestPatchUrl;
+    playtestPatchBtn.setAttribute('download', '');
+    if (playtestPatchLabel && cfg.playtestPatchLabel) {
+      playtestPatchLabel.textContent = cfg.playtestPatchLabel;
     }
   }
-
-
+  if (cfg.playtestPatchCodeUrl && playtestPatchCodeBtn) {
+    playtestPatchCodeBtn.href = cfg.playtestPatchCodeUrl;
+    playtestPatchCodeBtn.setAttribute('download', '');
+    if (playtestPatchCodeLabel && cfg.playtestPatchCodeLabel) {
+      playtestPatchCodeLabel.textContent = cfg.playtestPatchCodeLabel;
+    }
+  }
+  if (playtestPatchNote && cfg.playtestBranchUrl) {
+    playtestPatchNote.innerHTML =
+      'Newest Unity source patch from <a href="' + cfg.playtestBranchUrl +
+      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
+      (cfg.playtestPatchNotesUrl || 'files/manafall_cloud_agent_full_apply.txt') +
+      '">apply notes</a>). Not a Windows game zip.';
+  }
 
   const discordBtn = document.getElementById('discordBtn');
   const discordTop = document.getElementById('discordBtnTop');
