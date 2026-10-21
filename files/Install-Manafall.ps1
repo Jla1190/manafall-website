@@ -1,13 +1,4 @@
-#Requires -Version 5.1
-<#
-.SYNOPSIS
-  Fresh install of Manafall into C:\Manafall\Game (creates Manafall.exe there).
-
-.DESCRIPTION
-  Downloads the live Windows build from the public patch-manifest (multipart zip),
-  extracts into C:\Manafall\Game, writes install-root.txt, and puts a Desktop starter.
-  Use this when C:\Manafall exists but has no exe, or for a clean first install.
-#>
+﻿#Requires -Version 5.1
 param(
     [string]$InstallDir = 'C:\Manafall\Game',
     [string]$ManifestUrl = 'https://jla1190.github.io/manafall-website/patch-manifest.json',
@@ -93,18 +84,18 @@ function Find-GameRootInTree([string]$staging) {
 }
 
 function Download-File([string]$url, [string]$dest) {
-    Log "GET $url"
+    Log ("GET {0}" -f $url)
     $tmp = "$dest.partial"
     if (Test-Path -LiteralPath $dest) { Remove-Item -LiteralPath $dest -Force }
     if (Test-Path -LiteralPath $tmp) { Remove-Item -LiteralPath $tmp -Force }
     if (Get-Command curl.exe -ErrorAction SilentlyContinue) {
         & curl.exe -L --retry 5 --retry-delay 2 --progress-bar -o $tmp $url
-        if ($LASTEXITCODE -ne 0) { throw "curl exit $LASTEXITCODE for $url" }
+        if ($LASTEXITCODE -ne 0) { throw ("curl exit {0} for {1}" -f $LASTEXITCODE, $url) }
     } else {
         Invoke-WebRequest -Uri $url -OutFile $tmp -UseBasicParsing
     }
     if (-not (Test-Path -LiteralPath $tmp) -or (Get-Item -LiteralPath $tmp).Length -lt 64) {
-        throw "Download empty: $url"
+        throw ("Download empty: {0}" -f $url)
     }
     Move-Item -LiteralPath $tmp -Destination $dest -Force
     Log ('  bytes={0:N0}' -f (Get-Item -LiteralPath $dest).Length)
@@ -126,10 +117,10 @@ function Join-Parts([string[]]$parts, [string]$zipPath) {
 
 function Install-FromFolder([string]$source, [string]$dest) {
     New-Item -ItemType Directory -Force -Path $dest | Out-Null
-    Log "Copy $source -> $dest"
+    Log ("Copy {0} -> {1}" -f $source, $dest)
     & robocopy $source $dest /E /R:2 /W:2 /NFL /NDL /NJH /NJS /NP | Out-Null
     if ($LASTEXITCODE -gt 7) {
-        throw "Could not copy game files (robocopy $LASTEXITCODE). Close anything using $dest and retry."
+        throw ("Could not copy game files (robocopy {0}). Close anything using {1} and retry." -f $LASTEXITCODE, $dest)
     }
 }
 
@@ -149,7 +140,7 @@ function Install-DesktopStarter([string]$gameDir) {
     if (Test-Path -LiteralPath $stub) {
         Copy-Item -LiteralPath $stub -Destination $desktopExe -Force
         Set-Content -LiteralPath (Join-Path $desktop 'Manafall.dir.txt') -Value $gameDir -Encoding utf8
-        Log "Desktop starter: $desktopExe"
+        Log ("Desktop starter: {0}" -f $desktopExe)
         return
     }
 
@@ -158,20 +149,24 @@ function Install-DesktopStarter([string]$gameDir) {
     $sc = $shell.CreateShortcut($lnk)
     $cmd = Join-Path $gameDir 'Manafall.cmd'
     $exe = Join-Path $gameDir 'Manafall.exe'
-    $sc.TargetPath = if (Test-Path -LiteralPath $cmd) { $cmd } else { $exe }
+    if (Test-Path -LiteralPath $cmd) {
+        $sc.TargetPath = $cmd
+    } else {
+        $sc.TargetPath = $exe
+    }
     $sc.WorkingDirectory = $gameDir
     $sc.Description = 'Manafall'
-    $sc.IconLocation = "$exe,0"
+    $sc.IconLocation = ($exe + ',0')
     $sc.Save()
-    Log "Desktop shortcut: $lnk"
+    Log ("Desktop shortcut: {0}" -f $lnk)
 }
 
 try {
     Log '=== Manafall install start ==='
-    Log ("InstallDir={0}" -f $InstallDir)
+    Log ('InstallDir={0}' -f $InstallDir)
 
     Get-Process -Name 'Manafall' -ErrorAction SilentlyContinue | ForEach-Object {
-        Log ("Stopping Manafall pid {0}" -f $_.Id)
+        Log ('Stopping Manafall pid {0}' -f $_.Id)
         Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue
     }
     Start-Sleep -Seconds 1
@@ -184,17 +179,17 @@ try {
     $free = (New-Object IO.DriveInfo $drive).AvailableFreeSpace
     Log ('Free on {0} = {1:N1} GB' -f $drive, ($free / 1GB))
     if ($free -lt 4GB) {
-        throw "Need about 4 GB free on $drive. Free space, then run again."
+        throw ('Need about 4 GB free on {0}. Free space, then run again.' -f $drive)
     }
 
     $source = Find-UnpackedSource
     $version = 'local'
     if ($source -and ($source -ine $dest)) {
-        Log "Found unpacked game at $source — installing that (no download)."
+        Log ('Found unpacked game at {0} - installing that (no download).' -f $source)
         Install-FromFolder $source $dest
         $version = 'local-copy'
     } else {
-        Log "Fetching live patch list: $ManifestUrl"
+        Log ('Fetching live patch list: {0}' -f $ManifestUrl)
         $manifest = Invoke-RestMethod -Uri ($ManifestUrl + '?t=' + [DateTimeOffset]::UtcNow.ToUnixTimeSeconds())
         $version = [string]$manifest.version
         $url1 = [string]$manifest.url
@@ -204,9 +199,9 @@ try {
         if ([string]::IsNullOrWhiteSpace($version) -or [string]::IsNullOrWhiteSpace($url1)) {
             throw 'Patch list did not include version + url.'
         }
-        Log "Live version $version"
+        Log ('Live version {0}' -f $version)
 
-        $work = Join-Path $env:TEMP ("ManafallInstall-" + $version)
+        $work = Join-Path $env:TEMP ('ManafallInstall-' + $version)
         if (Test-Path -LiteralPath $work) { Remove-Item -LiteralPath $work -Recurse -Force }
         New-Item -ItemType Directory -Force -Path $work | Out-Null
 
@@ -214,14 +209,14 @@ try {
         $partUrls = @($url1, $url2, $url3) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
         $i = 1
         foreach ($u in $partUrls) {
-            $partPath = Join-Path $work ("part{0:D3}" -f $i)
+            $partPath = Join-Path $work ('part{0:D3}' -f $i)
             Download-File $u $partPath
-            $parts.Add($partPath) | Out-Null
+            [void]$parts.Add($partPath)
             $i++
         }
 
         $zip = Join-Path $work 'manafall.zip'
-        if ($parts.Count -eq 1 -and $url1 -match '\.zip($|\?)') {
+        if (($parts.Count -eq 1) -and ($url1 -match '\.zip($|\?)')) {
             Move-Item -LiteralPath $parts[0] -Destination $zip -Force
         } else {
             Join-Parts $parts.ToArray() $zip
@@ -229,7 +224,9 @@ try {
 
         if (-not [string]::IsNullOrWhiteSpace($sha)) {
             $got = (Get-FileHash -Algorithm SHA256 -Path $zip).Hash.ToLowerInvariant()
-            if ($got -ne $sha) { throw "Zip hash mismatch. expected $sha got $got" }
+            if ($got -ne $sha) {
+                throw ('Zip hash mismatch. expected {0} got {1}' -f $sha, $got)
+            }
             Log 'hash ok'
         }
 
@@ -241,7 +238,7 @@ try {
         if (-not $root) {
             throw 'Downloaded zip did not contain Manafall.exe next to Manafall_Data.'
         }
-        Log "Extracted game root: $root"
+        Log ('Extracted game root: {0}' -f $root)
         Install-FromFolder $root $dest
         Remove-Item -LiteralPath $work -Recurse -Force -ErrorAction SilentlyContinue
     }
@@ -249,10 +246,10 @@ try {
     $exe = Join-Path $dest 'Manafall.exe'
     $data = Join-Path $dest 'Manafall_Data'
     if (-not (Test-Path -LiteralPath $exe)) {
-        throw "Install finished but $exe is missing."
+        throw ('Install finished but {0} is missing.' -f $exe)
     }
     if (-not (Test-Path -LiteralPath $data)) {
-        throw "Install finished but $data is missing."
+        throw ('Install finished but {0} is missing.' -f $data)
     }
 
     $markerDir = Join-Path $dest 'Manafall_Data\StreamingAssets'
@@ -262,14 +259,28 @@ try {
     Write-InstallRoot $dest
     Install-DesktopStarter $dest
 
-    Log "OK: $exe"
-    Show-Msg ("Manafall is installed at:`n$dest`n`nDouble-click Desktop\Manafall.exe (or $exe) to play.`nLog: $script:LogPath")
+    Log ('OK: {0}' -f $exe)
+    $okMsg = @(
+        'Manafall is installed at:'
+        $dest
+        ''
+        'Double-click Desktop\Manafall.exe (or the path above) to play.'
+        ('Log: {0}' -f $script:LogPath)
+    ) -join [Environment]::NewLine
+    Show-Msg $okMsg
     Write-Host ''
-    Write-Host "Manafall installed: $exe"
+    Write-Host ('Manafall installed: {0}' -f $exe)
     Write-Host 'Start from Desktop\Manafall.exe or that path.'
     exit 0
 } catch {
-    Log ('ERROR: ' + $_.Exception.Message)
-    Show-Msg ("Manafall install failed:`n" + $_.Exception.Message + "`n`nSee Desktop\Manafall-install-log.txt")
+    $err = $_.Exception.Message
+    Log ('ERROR: {0}' -f $err)
+    $failMsg = @(
+        'Manafall install failed:'
+        $err
+        ''
+        'See Desktop\Manafall-install-log.txt'
+    ) -join [Environment]::NewLine
+    Show-Msg $failMsg
     exit 1
 }
