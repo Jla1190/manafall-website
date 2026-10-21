@@ -42,12 +42,33 @@
     [downloadBtn, downloadTop].forEach((btn) => {
       if (!btn) return;
       btn.href = cfg.downloadUrl;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
       btn.removeAttribute('aria-disabled');
     });
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
-      dlNote.textContent = 'Opens the current Windows release page on GitHub. Thanks for playing Manafall.';
+      dlNote.textContent =
+        'Single Windows zip on Mega — download, unzip, then open Manafall. The in-game auto-patch updates you to the latest build. Thanks for playing Manafall.';
       dlNote.classList.add('ready');
+    }
+  }
+
+  const androidBtn = document.getElementById('androidDownloadBtn');
+  const androidLabel = document.getElementById('androidDownloadLabel');
+  const androidNote = document.getElementById('androidDownloadNote');
+  if (cfg.androidDownloadUrl) {
+    if (androidBtn) {
+      androidBtn.href = cfg.androidDownloadUrl;
+      androidBtn.removeAttribute('aria-disabled');
+      androidBtn.target = '_blank';
+      androidBtn.rel = 'noopener noreferrer';
+    }
+    if (androidLabel && cfg.androidDownloadLabel) androidLabel.textContent = cfg.androidDownloadLabel;
+    if (androidNote) {
+      androidNote.textContent =
+        'Android APK - sideload (allow Unknown apps). Join via Server Browser on same LAN/VPN.';
+      androidNote.classList.add('ready');
     }
   }
 
