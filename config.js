@@ -1,26 +1,10 @@
 window.MANAFALL_SITE = {
   kofiUrl: "https://ko-fi.com/manafall",
-  // Mega single-zip link died ("File cannot be accessed"). Primary download is the installer
-  // that pulls the live GitHub multipart build into C:\Manafall\Game\Manafall.exe.
+  // Primary PC download: small installer that pulls the live GitHub multipart build.
   downloadUrl: "files/Install-Manafall.zip",
-  downloadLabel: "Download for Windows (installer zip)",
-  installUrl: "files/Install-Manafall.zip",
-  installLabel: "Install to C:\\Manafall\\Game (unzip, run Install-Manafall.cmd)",
-  clearSpaceUrl: "files/Clear-Space-For-Manafall.zip",
-  clearSpaceLabel: "Clear space on C: (run before install if disk full)",
+  downloadLabel: "Download for Windows",
   androidDownloadUrl: "https://mega.nz/file/PJ0TEaCY#A_r5KoBl_hKKvjxySZwV73Q2iubmyBwyGeG30xlH8Tw",
   androidDownloadLabel: "Download for Android",
-  // Latest cloud-agent playtest source patch (caustics, Nightling, Druclad, loot tiers, …).
-  playtestPatchUrl: "files/manafall_cloud_agent_full.patch",
-  playtestPatchLabel: "Download playtest source patch (full)",
-  playtestPatchCodeUrl: "files/manafall_cloud_agent_code.patch",
-  playtestPatchCodeLabel: "Download playtest source patch (code only)",
-  playtestPatchHideDebugUrl: "files/manafall_hide_debug_overlays.patch",
-  playtestPatchHideDebugLabel: "Download patch: hide debug overlays only",
-  playtestPatchVersionUrl: "files/manafall_version_label_and_hide_debug.patch",
-  playtestPatchVersionLabel: "Download patch: show version + hide debug",
-  playtestPatchNotesUrl: "files/manafall_cloud_agent_full_apply.txt",
-  playtestBranchUrl: "https://cursor.com/codebase/jla90/manafall/pull/76",
   creatorName: "Jean-Luc Alexander",
   discordUrl: "https://discord.gg/CH8GjWaDnx",
   itchUrl: "https://orangejuice90.itch.io/manafall",

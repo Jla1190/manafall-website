@@ -150,46 +150,25 @@
     <section id="download" class="panel reveal">
       <div class="panel-inner">
         <h2>Download</h2>
-        <p class="panel-copy">Windows and Android builds. The Windows button downloads a small installer that puts <code>Manafall.exe</code> in <code>C:\Manafall\Game</code>. Or grab Windows from itch.io.</p>
+        <p class="panel-copy">One Windows installer and one Android APK. The Windows zip installs <code>Manafall.exe</code> to <code>C:\Manafall\Game</code>.</p>
         <a class="btn primary wide" id="downloadBtn" href="files/Install-Manafall.zip" download>
           <span id="downloadLabel">Download for Windows</span>
         </a>
-        <a class="btn primary wide" id="installBtn" href="files/Install-Manafall.zip" style="margin-top:0.75rem" download>
-          <span id="installLabel">Install to C:\Manafall\Game (puts Manafall.exe there)</span>
-        </a>
-        <p class="note ready" id="installNote">Download the installer zip, unzip it, then run <code>Install-Manafall.cmd</code> (keep the <code>.ps1</code> next to it). Leave the window open (~2.4 GB). Creates <code>C:\Manafall\Game\Manafall.exe</code>.</p>
+        <p class="note ready" id="downloadNote">Unzip, run <code>Install-Manafall.cmd</code> (keep the <code>.ps1</code> next to it), leave the window open (~2.4 GB). Current build: 0.1.43.</p>
         <a class="btn primary wide" id="androidDownloadBtn" href="#" aria-disabled="true" style="margin-top:0.75rem">
           <span id="androidDownloadLabel">Download for Android</span>
         </a>
         <p class="note" id="androidDownloadNote">Android APK (sideload). Allow Unknown apps.</p>
 
-        <p class="stat-inline" id="downloadCountLine">Downloaded <strong id="statDownloadsInline">â€”</strong> times from this site</p>
-        <a class="btn ghost wide" id="itchBtn" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">
-          <span>Get it on itch.io</span>
-        </a>
-        <p class="note" id="downloadNote">Download link appears here once the build is uploaded to secure hosting.</p>
-        <p class="note ready" id="updateFixNote">Installer installs the current Windows build (0.1.43). Free about 4 GB on C: first. After install, use Desktop\Manafall.exe or C:\Manafall\Game\Manafall.exe.</p>
-        <a class="btn ghost wide" id="playtestPatchBtn" href="files/manafall_cloud_agent_full.patch" style="margin-top:0.75rem" download>
-          <span id="playtestPatchLabel">Download playtest source patch (full)</span>
-        </a>
-        <a class="btn ghost wide" id="playtestPatchCodeBtn" href="files/manafall_cloud_agent_code.patch" style="margin-top:0.5rem" download>
-          <span id="playtestPatchCodeLabel">Download playtest source patch (code only)</span>
-        </a>
-        <a class="btn ghost wide" id="playtestPatchHideDebugBtn" href="files/manafall_hide_debug_overlays.patch" style="margin-top:0.5rem" download>
-          <span id="playtestPatchHideDebugLabel">Download patch: hide debug overlays only</span>
-        </a>
-        <a class="btn ghost wide" id="playtestPatchVersionBtn" href="files/manafall_version_label_and_hide_debug.patch" style="margin-top:0.5rem" download>
-          <span id="playtestPatchVersionLabel">Download patch: show version + hide debug</span>
-        </a>
-        <p class="note ready" id="playtestPatchNote">Newest Unity source patch from cloud-agent PR #76 — filament water caustics, main-menu version label (v0.1.44), hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see apply notes). Not a Windows game zip — rebuild in Unity after apply.</p>
-        <p class="note" id="itchNote">Official itch.io page - follows, comments, and the same game listing.</p>
+        <p class="stat-inline" id="downloadCountLine">Downloaded <strong id="statDownloadsInline">—</strong> times from this site</p>
+        <p class="note" id="itchNote">Also listed on <a id="itchBtn" href="https://orangejuice90.itch.io/manafall" target="_blank" rel="noopener noreferrer">itch.io</a>.</p>
         <ul class="checklist">
           <li>Windows installer puts the game in <code>C:\Manafall\Game</code></li>
           <li>Also listed on itch.io</li>
           <li>No bundled adware</li>
           <li>Expect a large download (multi-GB)</li>
           <li>Desktop starter is created automatically after install</li>
-          <li id="ageRatingDownload">Rated Teen (13+) â€” Fantasy Violence, Mild Blood, Mild Drug Use</li>
+          <li id="ageRatingDownload">Rated Teen (13+) — Fantasy Violence, Mild Blood, Mild Drug Use</li>
         </ul>
         <p class="note" id="ageNote">Creator content advisory. Not an official ESRB or PEGI board rating.</p>
       </div>

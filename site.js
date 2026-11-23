@@ -57,30 +57,9 @@
     if (downloadLabel && cfg.downloadLabel) downloadLabel.textContent = cfg.downloadLabel;
     if (dlNote) {
       dlNote.textContent =
-        'Downloads Install-Manafall.cmd — run it and leave the window open. It installs Manafall.exe to C:\\Manafall\\Game (about 2.4 GB). The old Mega zip link is dead.';
+        'Unzip, run Install-Manafall.cmd (keep the .ps1 next to it), leave the window open. Installs Manafall.exe to C:\\Manafall\\Game (~2.4 GB). Current build: 0.1.43.';
       dlNote.classList.add('ready');
     }
-  }
-
-
-  const installBtn = document.getElementById('installBtn');
-  const installLabel = document.getElementById('installLabel');
-  const installNote = document.getElementById('installNote');
-  if (cfg.installUrl && installBtn) {
-    installBtn.href = cfg.installUrl;
-    installBtn.setAttribute('download', '');
-    if (installLabel && cfg.installLabel) installLabel.textContent = cfg.installLabel;
-    if (installNote) installNote.classList.add('ready');
-  }
-
-  const clearSpaceBtn = document.getElementById('clearSpaceBtn');
-  const clearSpaceLabel = document.getElementById('clearSpaceLabel');
-  const clearSpaceNote = document.getElementById('clearSpaceNote');
-  if (cfg.clearSpaceUrl && clearSpaceBtn) {
-    clearSpaceBtn.href = cfg.clearSpaceUrl;
-    clearSpaceBtn.setAttribute('download', '');
-    if (clearSpaceLabel && cfg.clearSpaceLabel) clearSpaceLabel.textContent = cfg.clearSpaceLabel;
-    if (clearSpaceNote) clearSpaceNote.classList.add('ready');
   }
 
   const androidBtn = document.getElementById('androidDownloadBtn');
@@ -99,52 +78,6 @@
         'Android APK - sideload (allow Unknown apps). Join via Server Browser on same LAN/VPN.';
       androidNote.classList.add('ready');
     }
-  }
-
-  const playtestPatchBtn = document.getElementById('playtestPatchBtn');
-  const playtestPatchCodeBtn = document.getElementById('playtestPatchCodeBtn');
-  const playtestPatchHideDebugBtn = document.getElementById('playtestPatchHideDebugBtn');
-  const playtestPatchLabel = document.getElementById('playtestPatchLabel');
-  const playtestPatchCodeLabel = document.getElementById('playtestPatchCodeLabel');
-  const playtestPatchHideDebugLabel = document.getElementById('playtestPatchHideDebugLabel');
-  // version patch wired below
-  const playtestPatchNote = document.getElementById('playtestPatchNote');
-  if (cfg.playtestPatchUrl && playtestPatchBtn) {
-    playtestPatchBtn.href = cfg.playtestPatchUrl;
-    playtestPatchBtn.setAttribute('download', '');
-    if (playtestPatchLabel && cfg.playtestPatchLabel) {
-      playtestPatchLabel.textContent = cfg.playtestPatchLabel;
-    }
-  }
-  if (cfg.playtestPatchCodeUrl && playtestPatchCodeBtn) {
-    playtestPatchCodeBtn.href = cfg.playtestPatchCodeUrl;
-    playtestPatchCodeBtn.setAttribute('download', '');
-    if (playtestPatchCodeLabel && cfg.playtestPatchCodeLabel) {
-      playtestPatchCodeLabel.textContent = cfg.playtestPatchCodeLabel;
-    }
-  }
-  if (cfg.playtestPatchHideDebugUrl && playtestPatchHideDebugBtn) {
-    playtestPatchHideDebugBtn.href = cfg.playtestPatchHideDebugUrl;
-    playtestPatchHideDebugBtn.setAttribute('download', '');
-    if (playtestPatchHideDebugLabel && cfg.playtestPatchHideDebugLabel) {
-      playtestPatchHideDebugLabel.textContent = cfg.playtestPatchHideDebugLabel;
-    }
-  }
-  const playtestPatchVersionBtn = document.getElementById('playtestPatchVersionBtn');
-  const playtestPatchVersionLabel = document.getElementById('playtestPatchVersionLabel');
-  if (cfg.playtestPatchVersionUrl && playtestPatchVersionBtn) {
-    playtestPatchVersionBtn.href = cfg.playtestPatchVersionUrl;
-    playtestPatchVersionBtn.setAttribute('download', '');
-    if (playtestPatchVersionLabel && cfg.playtestPatchVersionLabel) {
-      playtestPatchVersionLabel.textContent = cfg.playtestPatchVersionLabel;
-    }
-  }
-  if (playtestPatchNote && cfg.playtestBranchUrl) {
-    playtestPatchNote.innerHTML =
-      'Newest Unity source patch from <a href="' + cfg.playtestBranchUrl +
-      '" target="_blank" rel="noopener noreferrer">cloud-agent PR #76</a> — filament water caustics, main-menu version label (v0.1.44), hide sticky F3/F4 debug overlays, Nightling, Druclad, loot tiers, diseases, and more. Apply onto <code>main</code> with <code>git apply</code> (see <a href="' +
-      (cfg.playtestPatchNotesUrl || 'files/manafall_cloud_agent_full_apply.txt') +
-      '">apply notes</a>). Not a Windows game zip — rebuild in Unity after apply.';
   }
 
   const discordBtn = document.getElementById('discordBtn');
