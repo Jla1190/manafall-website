@@ -24,6 +24,7 @@
         <span>MANAFALL</span>
       </a>
       <nav class="links">
+        <a href="play.html">Play</a>
         <a href="#trailer">Trailer</a>
         <a href="#features">Features</a>
         <a href="#from-the-road">Pictures</a>
@@ -48,7 +49,11 @@
         </p>
         <p class="by">Created by <strong>Jean-Luc Alexander</strong></p>
         <div class="hero-cta">
-          <a class="btn primary" id="downloadBtnTop" href="#download">
+          <a class="btn primary" id="playBtnTop" href="play.html">
+            <span>Play in browser</span>
+            <small>Online WebGL demo</small>
+          </a>
+          <a class="btn ghost" id="downloadBtnTop" href="#download">
             <span>Download for Windows</span>
             <small>Large build - direct link</small>
           </a>
@@ -144,6 +149,17 @@
         </form>
         <p class="note" id="galleryFormStatus"></p>
         <p class="note">Prefer the GitHub form? <a id="galleryTemplateLink" href="https://github.com/Jla1190/manafall-website/issues/new?template=from-the-road.yml" target="_blank" rel="noopener noreferrer">Open it here</a>.</p>
+      </div>
+    </section>
+
+    <section id="play" class="panel reveal">
+      <div class="panel-inner">
+        <h2>Play in browser</h2>
+        <p class="panel-copy">True online WebGL demo — join a live WebSocket session from Chrome. Small plaza, not the full island or Sealclash.</p>
+        <a class="btn primary wide" id="playBtn" href="play.html">
+          <span>Open browser demo</span>
+        </a>
+        <p class="note ready" id="playNote">Works best on desktop Chrome. HTTPS pages need a <code>wss://</code> demo host (or pass <code>?connect=host:port</code>).</p>
       </div>
     </section>
 

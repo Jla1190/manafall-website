@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play Manafall in Browser - Demo</title>
+  <meta name="description" content="True online Manafall browser demo. Join a live WebSocket demo server from Chrome." />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .play-shell { max-width: 1200px; margin: 0 auto; padding: 18px 22px 40px; }
+    .play-bar {
+      display: flex; flex-wrap: wrap; gap: 12px 18px;
+      align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .play-bar h1 {
+      font-family: var(--display); font-size: 1.55rem; margin: 0;
+      letter-spacing: .04em;
+    }
+    .play-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .play-note {
+      color: var(--muted); font-size: .92rem; line-height: 1.45;
+      margin: 0 0 14px; max-width: 70ch;
+    }
+    .play-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      min-height: 420px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #02040a;
+      box-shadow: var(--shadow);
+    }
+    .play-frame-wrap iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: 0; background: #000;
+    }
+    .play-missing {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      padding: 28px; text-align: center; color: var(--muted);
+    }
+    .play-missing strong { color: var(--text); display: block; margin-bottom: 8px; }
+    @media (max-width: 720px) {
+      .play-frame-wrap { min-height: 70vh; aspect-ratio: auto; height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/symbol.png" alt="" width="40" height="40" />
+        <span>MANAFALL</span>
+      </a>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="play.html" aria-current="page">Play</a>
+        <a href="index.html#download">Download</a>
+        <a id="discordNav" href="https://discord.gg/CH8GjWaDnx" target="_blank" rel="noopener noreferrer">Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="play-shell">
+    <div class="play-bar">
+      <h1>Browser demo</h1>
+      <div class="play-actions">
+        <a class="btn ghost" href="index.html">Back to site</a>
+        <a class="btn primary" id="openFullscreen" href="webgl/index.html">Open fullscreen</a>
+      </div>
+    </div>
+    <p class="play-note" id="playNote">
+      True online demo over WebSockets — not Sealclash, not the full island.
+      Use <strong>Join Demo</strong> in the menu. HTTPS pages need a <code>wss://</code> demo host
+      (set in site config or pass <code>?connect=host:port</code>).
+    </p>
+    <div class="play-frame-wrap" id="playFrameWrap">
+      <div class="play-missing" id="playMissing">
+        <div>
+          <strong>Loading browser demo…</strong>
+          If this stays blank, the WebGL build is still uploading. Try fullscreen, or refresh in a minute.
+        </div>
+      </div>
+      <iframe
+        id="playFrame"
+        title="Manafall browser demo"
+        allow="autoplay; fullscreen; gamepad; microphone"
+        allowfullscreen
+        loading="eager"
+      ></iframe>
+    </div>
+  </main>
+
+  <script src="config.js?v=20261123-webgl"></script>
+  <script src="aurora.js"></script>
+  <script>
+    (function () {
+      const cfg = window.MANAFALL_SITE || {};
+      const frame = document.getElementById('playFrame');
+      const missing = document.getElementById('playMissing');
+      const note = document.getElementById('playNote');
+      const openFs = document.getElementById('openFullscreen');
+      const discordNav = document.getElementById('discordNav');
+      if (discordNav && cfg.discordUrl) discordNav.href = cfg.discordUrl;
+
+      const params = new URLSearchParams(window.location.search);
+      const connect = (params.get('connect') || cfg.webglDemoEndpoint || '').trim();
+      let src = cfg.webglBuildPath || 'webgl/index.html';
+      if (connect) {
+        const join = src.indexOf('?') >= 0 ? '&' : '?';
+        src = src + join + 'connect=' + encodeURIComponent(connect);
+        if (note) {
+          note.innerHTML =
+            'True online demo over WebSockets. Join Demo targets <code>' +
+            connect.replace(/</g, '') +
+            '</code>. HTTPS needs <code>wss://</code> on that host.';
+        }
+      }
+
+      if (openFs) openFs.href = src;
+      if (frame) {
+        frame.src = src;
+        frame.addEventListener('load', function () {
+          if (missing) missing.style.display = 'none';
+        });
+      }
+
+      // Probe whether the build exists so we can show a clearer message.
+      fetch(src.split('?')[0], { method: 'HEAD', cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok && missing) {
+            missing.innerHTML =
+              '<div><strong>WebGL build not on the site yet</strong>Expected <code>webgl/index.html</code>. Build with Manafall → Build → WebGL Browser Demo, copy <code>Game/WebGL/</code> into this repo’s <code>webgl/</code> folder, then push.</div>';
+          }
+        })
+        .catch(function () { /* ignore CORS/HEAD quirks on some hosts */ });
+    })();
+  </script>
+</body>
+</html>

@@ -107,6 +107,18 @@
     });
     if (itchNote) itchNote.classList.add('ready');
   }
+
+  const playPath = cfg.webglPlayPath || 'play.html';
+  const playBtn = document.getElementById('playBtn');
+  const playTop = document.getElementById('playBtnTop');
+  [playBtn, playTop].forEach((el) => {
+    if (!el) return;
+    let href = playPath;
+    if (cfg.webglDemoEndpoint) {
+      href += (href.indexOf('?') >= 0 ? '&' : '?') + 'connect=' + encodeURIComponent(cfg.webglDemoEndpoint);
+    }
+    el.href = href;
+  });
   if (cfg.kofiUrl) {
     [kofiBtn, kofiTop].forEach((btn) => {
       if (!btn) return;

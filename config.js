@@ -10,6 +10,12 @@ window.MANAFALL_SITE = {
   itchUrl: "https://orangejuice90.itch.io/manafall",
   trailerUrl: "https://youtube.com/shorts/TudrqM7-3_A",
   githubRepo: "Jla1190/manafall-website",
+  // Browser demo (WebGL + WebSocket join). Host files under /webgl from Game/WebGL.
+  webglPlayPath: "play.html",
+  webglBuildPath: "webgl/index.html",
+  // Public demo host:port for Join Demo on HTTPS pages (needs wss reverse-proxy).
+  // Leave empty until the dedicated -browserDemo server is reachable; pass ?connect=host:port to override.
+  webglDemoEndpoint: "",
   counterApiBase: "https://abacus.jasoncameron.dev",
   counterNamespace: "manafall",
   ageRating: "Teen",
