@@ -1,6 +1,6 @@
-﻿# WebGL build output goes here
+﻿# WebGL client (real Unity build)
 
-Copy the contents of `Game/WebGL/` from the Unity project into this folder
-(so `webgl/index.html` exists), then commit and push to deploy Pages.
+Copy contents of `Manafall/Game/WebGL/` here after:
+Manafall → Build → WebGL Browser Demo
 
-Build: Manafall → Build → WebGL Browser Demo
+Do not commit a stub `index.html`.

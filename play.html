@@ -50,9 +50,7 @@
     }
     .play-frame-wrap.is-ready .play-missing { display: none; }
     .play-missing strong { color: var(--text); display: block; margin-bottom: 8px; }
-    .btn[aria-disabled="true"] {
-      opacity: .45; pointer-events: none;
-    }
+    .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
     @media (max-width: 720px) {
       .play-frame-wrap { min-height: 70vh; aspect-ratio: auto; height: 70vh; }
     }
@@ -82,19 +80,19 @@
       <h1>Browser demo</h1>
       <div class="play-actions">
         <a class="btn ghost" href="index.html">Back to site</a>
-        <a class="btn primary" id="openFullscreen" href="webgl/index.html" aria-disabled="true">Open fullscreen</a>
+        <a class="btn primary" id="openFullscreen" href="#" aria-disabled="true">Open fullscreen</a>
       </div>
     </div>
     <p class="play-note" id="playNote">
-      True online demo over WebSockets — not Sealclash, not the full island.
-      Use <strong>Join Demo</strong> in the menu once the client is uploaded.
-      HTTPS pages need a <code>wss://</code> demo host (site config or <code>?connect=host:port</code>).
+      True online WebGL demo (WebSockets). This page only loads the real Unity client from
+      <code>webgl/</code> — never a stub.
     </p>
     <div class="play-frame-wrap" id="playFrameWrap">
       <div class="play-missing" id="playMissing">
         <div>
-          <strong>Checking for the WebGL client…</strong>
-          If the Unity build is not on the site yet, you will see a short status message here instead of a GitHub 404.
+          <strong>Waiting for the real WebGL client</strong>
+          Unity is still producing the first browser build on the project machine.
+          This page will start the actual game automatically once <code>webgl/index.html</code> is the Unity build.
         </div>
       </div>
       <iframe
@@ -106,7 +104,7 @@
     </div>
   </main>
 
-  <script src="config.js?v=20261123-webgl2"></script>
+  <script src="config.js?v=20261123-webgl3"></script>
   <script src="aurora.js"></script>
   <script>
     (function () {
@@ -122,66 +120,37 @@
       const params = new URLSearchParams(window.location.search);
       const connect = (params.get('connect') || cfg.webglDemoEndpoint || '').trim();
       const buildPath = cfg.webglBuildPath || 'webgl/index.html';
-      let src = buildPath;
-      if (connect) {
-        src = buildPath + (buildPath.indexOf('?') >= 0 ? '&' : '?') + 'connect=' + encodeURIComponent(connect);
-        if (note) {
-          note.innerHTML =
-            'True online demo over WebSockets. Join Demo targets <code>' +
-            connect.replace(/</g, '') +
-            '</code>. HTTPS needs <code>wss://</code> on that host.';
-        }
-      }
-
-      function showPending(html) {
-        if (missing) missing.innerHTML = html;
-        if (wrap) wrap.classList.remove('is-ready');
-        if (frame) frame.removeAttribute('src');
-        if (openFs) {
-          openFs.href = 'webgl/index.html';
-          openFs.setAttribute('aria-disabled', 'true');
-        }
-      }
-
-      function showReady() {
-        if (wrap) wrap.classList.add('is-ready');
-        if (frame) frame.src = src;
-        if (openFs) {
-          openFs.href = src;
-          openFs.removeAttribute('aria-disabled');
-        }
-      }
 
       function looksLikeUnityBuild(html) {
-        if (!html) return false;
-        // Real Unity WebGL template markers (placeholder page must not match).
-        return /unity-canvas|createUnityInstance|UnityLoader|buildUrl|dataUrl|frameworkUrl/i.test(html)
-          && !/Demo build not uploaded yet/i.test(html);
+        return !!html
+          && /createUnityInstance|unity-canvas|UnityLoader|frameworkUrl|dataUrl/i.test(html)
+          && !/Demo build not uploaded yet|Waiting for the real WebGL/i.test(html);
+      }
+
+      function armPlay(src) {
+        wrap.classList.add('is-ready');
+        frame.src = src;
+        openFs.href = src;
+        openFs.removeAttribute('aria-disabled');
+        if (connect && note) {
+          note.innerHTML =
+            'True online demo. Join Demo targets <code>' +
+            connect.replace(/</g, '') +
+            '</code>.';
+        }
       }
 
       fetch(buildPath, { cache: 'no-store' })
-        .then(function (res) {
-          if (!res.ok) throw new Error('missing');
-          return res.text();
-        })
+        .then(function (res) { if (!res.ok) throw new Error('missing'); return res.text(); })
         .then(function (html) {
-          if (looksLikeUnityBuild(html)) {
-            showReady();
-            return;
-          }
-          showPending(
-            '<div><strong>Browser demo is still building</strong>' +
-            'The Play page works, but the Unity WebGL client is not uploaded yet. ' +
-            'This usually takes a while on the first WebGL import. Refresh in a bit — ' +
-            '<a href="webgl/index.html">status page</a>.</div>'
-          );
+          if (!looksLikeUnityBuild(html)) throw new Error('not-unity');
+          var src = buildPath;
+          if (connect) src += (buildPath.indexOf('?') >= 0 ? '&' : '?') + 'connect=' + encodeURIComponent(connect);
+          armPlay(src);
         })
         .catch(function () {
-          showPending(
-            '<div><strong>WebGL client not on the site yet</strong>' +
-            'Expected <code>webgl/index.html</code> from a Manafall WebGL build. ' +
-            'Stay on this Play page; do not open a bare <code>webgl/</code> URL until the build is pushed.</div>'
-          );
+          // Stay on the waiting UI. Retry so the real client appears without a manual refresh.
+          setTimeout(function () { location.reload(); }, 90000);
         });
     })();
   </script>
