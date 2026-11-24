@@ -40,12 +40,19 @@
     .play-frame-wrap iframe {
       position: absolute; inset: 0; width: 100%; height: 100%;
       border: 0; background: #000;
+      display: none;
     }
+    .play-frame-wrap.is-ready iframe { display: block; }
     .play-missing {
       position: absolute; inset: 0; display: grid; place-items: center;
       padding: 28px; text-align: center; color: var(--muted);
+      z-index: 1;
     }
+    .play-frame-wrap.is-ready .play-missing { display: none; }
     .play-missing strong { color: var(--text); display: block; margin-bottom: 8px; }
+    .btn[aria-disabled="true"] {
+      opacity: .45; pointer-events: none;
+    }
     @media (max-width: 720px) {
       .play-frame-wrap { min-height: 70vh; aspect-ratio: auto; height: 70vh; }
     }
@@ -75,20 +82,19 @@
       <h1>Browser demo</h1>
       <div class="play-actions">
         <a class="btn ghost" href="index.html">Back to site</a>
-        <a class="btn primary" id="openFullscreen" href="webgl/index.html">Open fullscreen</a>
+        <a class="btn primary" id="openFullscreen" href="webgl/index.html" aria-disabled="true">Open fullscreen</a>
       </div>
     </div>
     <p class="play-note" id="playNote">
       True online demo over WebSockets — not Sealclash, not the full island.
-      Use <strong>Join Demo</strong> in the menu. HTTPS pages need a <code>wss://</code> demo host
-      (set in site config or pass <code>?connect=host:port</code>).
+      Use <strong>Join Demo</strong> in the menu once the client is uploaded.
+      HTTPS pages need a <code>wss://</code> demo host (site config or <code>?connect=host:port</code>).
     </p>
     <div class="play-frame-wrap" id="playFrameWrap">
       <div class="play-missing" id="playMissing">
         <div>
-          <strong>Browser demo build is still cooking</strong>
-          The Play page is live, but <code>webgl/</code> is not on the site yet.
-          Unity is finishing the first WebGL import/build on this machine — refresh this page later, or use fullscreen once <code>webgl/index.html</code> exists.
+          <strong>Checking for the WebGL client…</strong>
+          If the Unity build is not on the site yet, you will see a short status message here instead of a GitHub 404.
         </div>
       </div>
       <iframe
@@ -96,16 +102,16 @@
         title="Manafall browser demo"
         allow="autoplay; fullscreen; gamepad; microphone"
         allowfullscreen
-        loading="eager"
       ></iframe>
     </div>
   </main>
 
-  <script src="config.js?v=20261123-webgl"></script>
+  <script src="config.js?v=20261123-webgl2"></script>
   <script src="aurora.js"></script>
   <script>
     (function () {
       const cfg = window.MANAFALL_SITE || {};
+      const wrap = document.getElementById('playFrameWrap');
       const frame = document.getElementById('playFrame');
       const missing = document.getElementById('playMissing');
       const note = document.getElementById('playNote');
@@ -115,10 +121,10 @@
 
       const params = new URLSearchParams(window.location.search);
       const connect = (params.get('connect') || cfg.webglDemoEndpoint || '').trim();
-      let src = cfg.webglBuildPath || 'webgl/index.html';
+      const buildPath = cfg.webglBuildPath || 'webgl/index.html';
+      let src = buildPath;
       if (connect) {
-        const join = src.indexOf('?') >= 0 ? '&' : '?';
-        src = src + join + 'connect=' + encodeURIComponent(connect);
+        src = buildPath + (buildPath.indexOf('?') >= 0 ? '&' : '?') + 'connect=' + encodeURIComponent(connect);
         if (note) {
           note.innerHTML =
             'True online demo over WebSockets. Join Demo targets <code>' +
@@ -127,23 +133,56 @@
         }
       }
 
-      if (openFs) openFs.href = src;
-      if (frame) {
-        frame.src = src;
-        frame.addEventListener('load', function () {
-          if (missing) missing.style.display = 'none';
-        });
+      function showPending(html) {
+        if (missing) missing.innerHTML = html;
+        if (wrap) wrap.classList.remove('is-ready');
+        if (frame) frame.removeAttribute('src');
+        if (openFs) {
+          openFs.href = 'webgl/index.html';
+          openFs.setAttribute('aria-disabled', 'true');
+        }
       }
 
-      // Probe whether the build exists so we can show a clearer message.
-      fetch(src.split('?')[0], { method: 'HEAD', cache: 'no-store' })
+      function showReady() {
+        if (wrap) wrap.classList.add('is-ready');
+        if (frame) frame.src = src;
+        if (openFs) {
+          openFs.href = src;
+          openFs.removeAttribute('aria-disabled');
+        }
+      }
+
+      function looksLikeUnityBuild(html) {
+        if (!html) return false;
+        // Real Unity WebGL template markers (placeholder page must not match).
+        return /unity-canvas|createUnityInstance|UnityLoader|buildUrl|dataUrl|frameworkUrl/i.test(html)
+          && !/Demo build not uploaded yet/i.test(html);
+      }
+
+      fetch(buildPath, { cache: 'no-store' })
         .then(function (res) {
-          if (!res.ok && missing) {
-            missing.innerHTML =
-              '<div><strong>WebGL build not on the site yet</strong>Expected <code>webgl/index.html</code>. Build with Manafall → Build → WebGL Browser Demo, copy <code>Game/WebGL/</code> into this repo’s <code>webgl/</code> folder, then push.</div>';
-          }
+          if (!res.ok) throw new Error('missing');
+          return res.text();
         })
-        .catch(function () { /* ignore CORS/HEAD quirks on some hosts */ });
+        .then(function (html) {
+          if (looksLikeUnityBuild(html)) {
+            showReady();
+            return;
+          }
+          showPending(
+            '<div><strong>Browser demo is still building</strong>' +
+            'The Play page works, but the Unity WebGL client is not uploaded yet. ' +
+            'This usually takes a while on the first WebGL import. Refresh in a bit — ' +
+            '<a href="webgl/index.html">status page</a>.</div>'
+          );
+        })
+        .catch(function () {
+          showPending(
+            '<div><strong>WebGL client not on the site yet</strong>' +
+            'Expected <code>webgl/index.html</code> from a Manafall WebGL build. ' +
+            'Stay on this Play page; do not open a bare <code>webgl/</code> URL until the build is pushed.</div>'
+          );
+        });
     })();
   </script>
 </body>
